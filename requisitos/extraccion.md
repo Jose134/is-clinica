@@ -1,12 +1,12 @@
 # Extracción de requisitos
 
-## Partes interesadas:
+### Partes interesadas:
 * Clínica Médica
 * Desarrolladores del Grupo 30
 
-## Datos que se deben almacenar:
+### Datos que se deben almacenar:
 * **Pacientes:**
-*  Nombre y Apellidos
+ * Nombre y Apellidos
  * Teléfono
  *  Código Postal
  *  Fecha Nacimiento
@@ -28,7 +28,7 @@
  *  Comienzo
  *  Fin
 
-## Requisitos
+### Requisitos
 
 **Funcionales:**
 1. Añadir nuevo paciente
