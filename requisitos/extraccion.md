@@ -29,15 +29,17 @@
 ### Requisitos
 
 **Funcionales:**
-1. Añadir nuevo paciente
-2. Añadir nueva cita
-3. Añadir tratamiento a paciente
-4. Añadir nueva entrada a historial de paciente
-5. Mostrar citas
-6. Mostrar lista con usuarios
-7. Modificar usuario
-8. Modificar tratamiento
-9. Búsqueda por nombre (opcional: busqueda por otros campos)
+01. Añadir nuevo paciente
+02. Añadir nueva cita
+03. Añadir tratamiento a paciente
+04. Añadir nueva entrada a historial de paciente
+05. Mostrar citas
+06. Mostrar lista con usuarios
+07. Seleccionar un usuario
+08. Mostrar toda la información asignada al usuario seleccionado
+09. Modificar usuario
+10. Modificar tratamiento
+11. Búsqueda por nombre (opcional: busqueda por otros campos)
 
 **No Funcionales:**
 1. Sistema Operativo Linux
