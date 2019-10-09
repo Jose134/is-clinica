@@ -20,4 +20,4 @@
 
 **Flujos alternativos:**
 
-1. Si  ha habido un fallo al introducir nuevo paciente, se muestra un mensaje de error
+3.a Si  ha habido un fallo al introducir nuevo paciente, se muestra un mensaje de error
