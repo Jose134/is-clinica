@@ -30,11 +30,11 @@
 
 **Funcionales:**
 1. Añadir nuevo paciente
-2. Añadir tratamiento a paciente
-3. Añadir nueva cita
+2. Añadir nueva cita
+3. Añadir tratamiento a paciente
 4. Añadir nueva entrada a historial de paciente
-5. Mostrar lista con usuarios
-6. Mostrar citas
+5. Mostrar citas
+6. Mostrar lista con usuarios
 7. Modificar usuario
 8. Modificar tratamiento
 9. Búsqueda por nombre (opcional: busqueda por otros campos)
