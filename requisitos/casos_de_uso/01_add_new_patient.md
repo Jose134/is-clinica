@@ -1,6 +1,7 @@
 # Añadir nuevo paciente
 
 **ID**: 01
+
 **Descripción**: Se introduce el nombre y apellidos, el teléfono, el código postal, la fecha de nacimiento y la procedencia del nuevo paciente 
 
 **Actores principales**: Clinica
