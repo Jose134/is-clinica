@@ -8,9 +8,13 @@
 > **Pacientes:** 
  * Nombre y Apellidos
  * Teléfono
- *  Código Postal
- *  Fecha Nacimiento
- *  Procedencia (Privado/Empresa o Seguro)
+ * Código Postal
+ * Fecha Nacimiento
+ * Procedencia (Privado/Empresa o Seguro)
+ * Citas
+ * Histoial
+ * Tratamiento
+ 
 > **Citas:**
  *  Día
  *  Hora
