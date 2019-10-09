@@ -5,29 +5,27 @@
 * Desarrolladores del Grupo 30
 
 ### Datos que se deben almacenar:
-- **Pacientes:**
+> **Pacientes:** 
  * Nombre y Apellidos
  * Teléfono
  *  Código Postal
  *  Fecha Nacimiento
  *  Procedencia (Privado/Empresa o Seguro)
-
-- **Citas:**
+> **Citas:**
  *  Día
  *  Hora
  *  Duración
 
-- **Historial:**
+>**Historial:**
  *  Fecha de consulta
  *  Síntoma
 
-- **Tratamiento:**
+> **Tratamiento:**
  *  Medicamento
  *  Dosis
  *  Frecuencia
  *  Comienzo
  *  Fin
-
 ### Requisitos
 
 **Funcionales:**
