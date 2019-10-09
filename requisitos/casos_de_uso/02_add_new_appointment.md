@@ -1,23 +1,23 @@
 # Añadir nueva cita
 
-**ID**: 06
-**Nombre**: Buscar usuario por nombre y apellidos
+**ID**: 02
+**Descripción**: Se introduce la hora de comienzo y la duración y se asigna la cita a un usuario previamente seleccionado.
 
-**Prioridad** (de 1 a 10): 7
-**Puntos estimado**: 3
-**Iteración**: 1
+**Actores principales**: Clínica
 
-**Responsable**: Javier Barbero
+**Precondiciones**:
+* Ninguna
 
-#### Descripción
+**Flujo principal**:
+1. Se desea concertar una cita con un paciente
+2. El usuario selecciona un paciente
+3. Se elige la opcion de concertar cita
+4. Se introducen los datos de la cita
+5. Se añade la cita al usuario
 
-Como *administrador* quiero *localizar los datos de un usuario* para *consultar su información y las operaciones posibles sobre el mismo*
+**Postcondiciones**:
+* Ninguna
 
-#### Validación
+**Flujos alternativos**:
 
-* Se debe poder localizar cualquier usuario
-* Los resultados de la búsqueda pueden mostrar cero o más resultados
-* No es necesario utilizar el nombre completo
-* Se deben mostrar todos los datos del usuario
-* Se deben mostrar la lista de mascotas del usuario
-* Se deben mostrar las operaciones posibles sobre el usuario
+5.a. Si los datos de la cita se introducen incorrectamente, no se añade y se muestra un mensaje de error al usuario.
