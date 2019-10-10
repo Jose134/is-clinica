@@ -1,6 +1,6 @@
 # Mostrar información de paciente
 
-**ID**: 05
+**ID**: 08
 **Descripción**: Se muestran en pantalla toda la informacion de un paciente previamente seleccionado.
 
 **Actores principales**: Clínica
