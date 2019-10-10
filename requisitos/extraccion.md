@@ -35,7 +35,7 @@
 **Funcionales:**
 01. Añadir nuevo paciente
 02. Añadir nueva cita
-03. Añadir tratamiento a paciente
+03. Añadir nuevo tratamiento a paciente
 04. Añadir nueva entrada a historial de paciente
 05. Mostrar citas
 06. Mostrar lista con pacientes
