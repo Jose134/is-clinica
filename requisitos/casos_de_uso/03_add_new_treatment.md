@@ -1,3 +1,5 @@
+# Añadir nuevo tratamiento a paciente
+
 **ID:** 03 
 
 **Descripción:** Se introduce el medicamento o medicamentos, y su dosis. Además, se añade la frecuencia con la que debe tomarlos y el comienzo y fin de dicho tratamiento, y lo asigna a un paciente previamente seleccionado.
