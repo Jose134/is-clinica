@@ -21,4 +21,4 @@
 
 **Flujos alternativos:**
 
-* Si los datos no se introducen de manera correcta, se muestra un mensaje de error por pantalla si los datos no son correctos y permanece con los mismos datos que tenía antes de su modificación.
+4.a. Si los datos no se introducen de manera correcta, se muestra un mensaje de error por pantalla si los datos no son correctos y permanece con los mismos datos que tenía antes de su modificación.
