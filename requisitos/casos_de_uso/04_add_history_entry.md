@@ -1,3 +1,5 @@
+# Añadir nueva entrada a historial de paciente
+
 **ID:** 04
 
 **Descripción:** Se introduce la fecha de consulta y los síntomas que tenía el paciente y lo asigna a un paciente previamente seleccionado.
