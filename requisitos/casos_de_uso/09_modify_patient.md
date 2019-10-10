@@ -1,3 +1,5 @@
+# Modificar paciente
+
 **ID:** 09
 
 **Descripción:** Se encarga de actualizar los datos médicos de un paciente.
@@ -10,10 +12,10 @@
 
 **Flujo principal:**
 
-1.El administrador quiere modificar los datos de un paciente.
-2.El administrados selecciona al paciente que desea modificar.
-3.El administrador modifica los datos de dicho paciente.
-4.El administrador muestra por pantalla los datos modificados del paciente.
+1. El administrador quiere modificar los datos de un paciente.
+2. El administrados selecciona al paciente que desea modificar.
+3. El administrador modifica los datos de dicho paciente.
+4. El sistema muestra por pantalla los datos modificados del paciente.
 
 **Postcondiciones:**
 
