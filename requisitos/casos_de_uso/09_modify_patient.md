@@ -1,5 +1,3 @@
-Modificar paciente
-
 **ID:** 09
 
 **Descripción:** Se encarga de actualizar los datos médicos de un paciente.
