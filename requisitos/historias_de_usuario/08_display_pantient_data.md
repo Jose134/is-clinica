@@ -3,7 +3,7 @@
 
 #### Descripción
 
-Como *administrador* quiero *ver toda la información de un paciente* para 
+Como *administrador* quiero *ver toda la información de un paciente* para *conocer su historial médico, citas concertadas y tratamiento actual*
 
 #### Validación
 
