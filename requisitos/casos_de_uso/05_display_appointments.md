@@ -1,5 +1,3 @@
-# Mostrar citas
-
 **ID**: 05
 **Descripción**: Se muestran en pantalla todas las citas concertadas.
 
