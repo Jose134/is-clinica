@@ -1,3 +1,5 @@
+# Mostrar lista con pacientes
+
 **ID:** 06 
 
 **Descripción:** Se encarga de mostrar por pantalla todos los pacientes dados de alta y sus datos médicos.
@@ -10,8 +12,8 @@
 
 **Flujo principal:**
 
-1.El administrador quiere ver la lista de todos los pacientes de la clínica.
-2.El sistema muestra por pantalla los pacientes que estan dados de alta en la clínica.
+1. El administrador quiere ver la lista de todos los pacientes de la clínica.
+2. El sistema muestra por pantalla los pacientes que estan dados de alta en la clínica.
 
 **Postcondiciones:**
 
