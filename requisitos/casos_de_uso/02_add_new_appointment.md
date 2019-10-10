@@ -20,3 +20,4 @@
 
 **Flujos alternativos**:
 5.a. Si los datos de la cita se introducen incorrectamente, no se añade y se muestra un mensaje de error al usuario.
+5.b. Si la cita se solapa con otra ya existente se mostrará un mensaje de confirmación al usuario antes de añadirla
