@@ -9,12 +9,11 @@
 * Ninguna
 
 **Flujo principal**:
-1. Se desea ver las citas próximas
-2. El usuario selecciona la opcion
-3. El sistema muestra una lista con todas las citas ordenadas por fecha y hora
+1. El administrador desea ver las citas próximas
+2. El sistema muestra una lista con todas las citas ordenadas por fecha y hora
 
 **Postcondiciones**:
 * Ninguna
 
 **Flujos alternativos**:
-3.a. Si no hay ninguna cita concertada se mostrara un mensaje de aviso
+2.a. Si no hay ninguna cita concertada se mostrara un mensaje de aviso
