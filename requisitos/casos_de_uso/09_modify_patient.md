@@ -21,4 +21,4 @@
 
 **Flujos alternativos:**
 
-* Si los datos no se introducen de manera correcta, el paciente no se modifica y permanece con los mismos datos que tenía antes de su modificación.
+* Si los datos no se introducen de manera correcta, se muestra un mensaje de error por pantalla y permanece con los mismos datos que tenía antes de su modificación.
