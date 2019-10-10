@@ -6,7 +6,7 @@
 **Actores principales**: Clínica
 
 **Precondiciones**:
-* Ninguna
+* Seleccionar previamente a un paciente
 
 **Flujo principal**:
 1. Se desea concertar una cita con un paciente
@@ -19,5 +19,4 @@
 * Ninguna
 
 **Flujos alternativos**:
-
 5.a. Si los datos de la cita se introducen incorrectamente, no se añade y se muestra un mensaje de error al usuario.
