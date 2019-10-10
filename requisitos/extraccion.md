@@ -40,8 +40,8 @@
 05. Mostrar citas
 06. Mostrar lista con usuarios
 07. Seleccionar un usuario
-08. Mostrar toda la información asignada al usuario seleccionado
-09. Modificar usuario
+08. Mostrar toda la información del paciente seleccionado
+09. Modificar paciente
 10. Modificar tratamiento
 11. Búsqueda por nombre (opcional: busqueda por otros campos)
 
