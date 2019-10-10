@@ -13,7 +13,7 @@
 1.El administrador quiere asignarle un tratamiento a un paciente.
 2.El administrador selecciona al paciente.
 3.El administrador introduce los datos del tratamiento asignado.
-4.El administrador muestra por pantalla al paciente actualizado y muestra un mensaje si dicha actualización se realiazó correctamente.
+4.El administrador muestra por pantalla al paciente actualizado y muestra un mensaje si dicha actualización se realizó correctamente.
 
 **Postcondiciones:**
 
