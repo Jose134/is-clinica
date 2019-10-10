@@ -3,7 +3,7 @@
 
 #### Descripción
 
-Como *administrador* quiero *añadir un paciente* para *poder consultar posteriormente la información del pacoente*
+Como *administrador* quiero *añadir un paciente* para *poder consultar posteriormente la información del paciente*
 
 #### Validación
 
