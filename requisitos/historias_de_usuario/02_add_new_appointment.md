@@ -7,6 +7,6 @@ Como *administrador* quiero *añadir una cita a un paciente* para *poder consult
 
 #### Validación
 
-* Se debe poder añadir a cualquier usuario
+* Se debe poder añadir a cualquier paciente
 * Se debe mostrar un mensaje de error si los datos de la cita se introdujeron en formato incorrecto
 * Se debe mostrar un mensaje de confirmación si solapa con otra cita
