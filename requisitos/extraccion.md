@@ -38,8 +38,8 @@
 03. Añadir tratamiento a paciente
 04. Añadir nueva entrada a historial de paciente
 05. Mostrar citas
-06. Mostrar lista con usuarios
-07. Seleccionar un usuario
+06. Mostrar lista con pacientes
+07. Seleccionar un paciente
 08. Mostrar toda la información del paciente seleccionado
 09. Modificar paciente
 10. Modificar tratamiento
