@@ -1,4 +1,4 @@
-**ID:** 06 **Nombre:** Mostrar la listad de pacientes.
+**ID:** 06 **Nombre:** Mostrar la lista de pacientes.
 
 **Descripción:**
 Como administrador quiero mostrar por pantalla todos los pacientes de la clínica y sus datos médicos.
