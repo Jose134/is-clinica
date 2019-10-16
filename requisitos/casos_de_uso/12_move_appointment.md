@@ -1,5 +1,3 @@
-#mover cita#
-
 **ID:**
 
 **Descripción:** Seleccionar a un paciente, elige una de sus citas y la modifica.
