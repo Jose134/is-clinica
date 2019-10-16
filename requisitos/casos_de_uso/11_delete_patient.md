@@ -1,3 +1,5 @@
+# Borrar paciente
+
 **ID:** 11
 
 **Descripción:** Seleccionar a un paciente y lo elimina.
