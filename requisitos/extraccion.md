@@ -39,11 +39,17 @@
 04. Añadir nueva entrada a historial de paciente
 05. Mostrar citas
 06. Mostrar lista con pacientes
-07. Seleccionar un paciente
-08. Mostrar toda la información del paciente seleccionado
-09. Modificar paciente
-10. Modificar tratamiento
-11. Búsqueda por nombre (opcional: busqueda por otros campos)
+07. Mostrar toda la información del paciente seleccionado
+08. Modificar paciente
+09. Modificar tratamiento
+10. Búsqueda por nombre (opcional: busqueda por otros campos)
+11. Borrar paciente
+12. Mover cita
+13. Cancelar cita
+14. Consultar citas de hoy
+15. Consultar citas de un paciente
+16. Consultar historial médico de un paciente
+17. Consultar tratamientos de un paciente
 
 **No Funcionales:**
 1. Sistema Operativo Linux
