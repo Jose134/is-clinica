@@ -1,6 +1,6 @@
 **ID:** 11
 
-**Descripción:** Seleccionar a un paciente, elige una de sus citas y la modifica.
+**Descripción:** Seleccionar a un paciente y lo elimina.
 
 **Actores principales:** Clínica
 
@@ -8,9 +8,9 @@
 * Seleccionar un paciente.
 
 **Flujo principal:**
-1. El administrador desea modificar una cita.
-2. El administrador selecciona un paciente, elige la cita que desea y la modifica.
-3. El sistema indica si se ha modificado la cita correctamente y la muestra por pantalla.
+1. El administrador desea eliminar un paciente.
+2. El administrador selecciona un paciente y lo elimina.
+3. El sistema indica si se ha eliminado el paciente correctamente.
 
 **Postcondiciones:**
 
@@ -18,6 +18,4 @@
 
 **Flujos alternativos:**
 
-3.a La cita elegida no puede coincidir con otra cita. Si esto ocurre se muestra un mensaje de error por pantalla.
-
-Ya luego termino
+3.a  El sistema muestra un mensaje de error por pantalla si no encuentra el paciente seleccionado.
