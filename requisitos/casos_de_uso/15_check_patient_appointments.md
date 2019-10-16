@@ -1,6 +1,6 @@
 # consultar citas de un paciente
 
-**ID:**
+**ID:** 15
 
 **Descripción:** Se elige un paciente previamente y se muestran sus citas por pantalla.
 
