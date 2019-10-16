@@ -1,4 +1,4 @@
-# consultar citas de un paciente
+# Consultar citas de un paciente
 
 **ID:** 15
 
