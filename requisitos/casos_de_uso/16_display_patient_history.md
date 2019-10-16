@@ -1,6 +1,6 @@
 # Consultar historial médico de un paciente
 
-**ID:** 17
+**ID:** 16
 
 **Descripción:** Se muestra el historial médico de un paciente seleccionado previamente.
 
