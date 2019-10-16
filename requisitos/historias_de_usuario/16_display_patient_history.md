@@ -1,4 +1,5 @@
-**ID**: 17
+**ID**: 16
+
 **Nombre**: Mostrar historial médico de un paciente
 
 #### Descripción
