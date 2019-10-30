@@ -1,4 +1,4 @@
-**ID**: 11
+**ID**: 10
 **Nombre**: Búsqueda de paciente por nombre
 
 #### Descripción
