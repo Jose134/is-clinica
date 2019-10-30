@@ -6,5 +6,5 @@
 Como *administrador* quiero *Consultar las citas de hoy* para *saber todas las citas que tiene hoy*
 #### Validación
 
-* Se debe mostrar la información de todas las citas que tiene hoy.
+* Se debe mostrar la información de todas las citas que tienes hoy.
 * Si no tiene ninguna cita se debe mostrar un mensaje informativo.
