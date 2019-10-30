@@ -1,4 +1,4 @@
-**ID:** 03 **Nombre:** Consultar citas de un paciente.
+**ID:** 15 **Nombre:** Consultar citas de un paciente.
 
 **Descripción:**
 Como administrador quiero consultar las citas del paciente que seleccione previamente.
