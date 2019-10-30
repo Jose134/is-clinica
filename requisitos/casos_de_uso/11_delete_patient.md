@@ -1,4 +1,4 @@
-# Borrar paciente
+# Borrar un paciente
 
 **ID:** 11
 
