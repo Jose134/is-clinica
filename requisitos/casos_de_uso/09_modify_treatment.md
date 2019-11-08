@@ -1,6 +1,6 @@
 # Modificar tratamiento
 
-**ID:** 10
+**ID:** 9
 
 **Descripción:** Se encarga de actualizar los datos de un tratamiento de un paciente.
 
