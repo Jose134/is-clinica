@@ -1,4 +1,4 @@
-![01]("Sequence Diagram01 add_new_patient.jpg")
+![01](Diagram01.jpg)
 ![02](Sequence Diagram02 add_new_appointment.jpg)
 ![04](Sequence Diagram04 add_history_entry.jpg)
 ![05](Sequence Diagram05 display_appointment.jpg)
