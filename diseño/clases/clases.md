@@ -1,3 +1,5 @@
+[Diagrama de Clases](ClassDiagram.jpg)
+
 ## Paciente
 **Clase:** Paciente
 **Descripción:** Contiene toda la información de un paciente
