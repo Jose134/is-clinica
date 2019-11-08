@@ -1,6 +1,7 @@
 # Añadir nueva cita
 
 **ID**: 02
+
 **Descripción**: Se introduce la hora de comienzo y la duración y se asigna la cita a un paciente previamente seleccionado.
 
 **Actores principales**: Clínica
