@@ -1,6 +1,6 @@
 # Modificar paciente
 
-**ID:** 09
+**ID:** 08
 
 **Descripción:** Se encarga de actualizar los datos médicos de un paciente.
 

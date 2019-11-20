@@ -1,6 +1,6 @@
 # Búsqueda de paciente por nombre
 
-**ID**: 11
+**ID**: 10
 
 **Descripción**: Se busca a un paciente por nombre y se muestran en pantalla todos los pacientes encontrados, pudiendo el administrador seleccionar uno de ellos.
 

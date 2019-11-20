@@ -1,6 +1,6 @@
 # Mostrar información de paciente
 
-**ID**: 08
+**ID**: 07
 
 **Descripción**: Se muestran en pantalla toda la informacion de un paciente previamente seleccionado.
 
