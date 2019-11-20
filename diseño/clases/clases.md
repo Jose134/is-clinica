@@ -36,7 +36,6 @@
  * getAllPatients - Devuelve una lista con todos los pacientes
  * getAllAppointments - Devuelve una lista con todas las citas de los pacientes
  * getTodayAppointments - Devuelve una lista con las citas para el día actual
- * savePatientData - Guarda los datos de un paciente Devuelve una lista con todas las citas de los pacientes
  * savePatientData - Guarda los datos de un paciente
  * getters y setters
 
