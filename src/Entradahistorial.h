@@ -1,21 +1,12 @@
-#ifndef Entradahistorial.h
-#define Entradahistorial.h
+#ifndef ENTRADAHISTORIAL_H
+#define ENTRADAHISTORIAL_H
 
 #include <string>
 
-using namespace std;
-
-class historial{
-
-  private:
-    string _fecha;
-    string _sistomas;
-
-  public:
-    historial();
-
-}
-
-
+struct EntradaHistorial{
+	std::string fecha;
+   	std::string sistomas;
+};
+    
 
 #endif
