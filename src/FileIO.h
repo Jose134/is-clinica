@@ -37,6 +37,6 @@ class FileIO {
         void guardarPaciente(Paciente p); //Guarda los datos de un paciente
         
 
-}
+};
 
 #endif
