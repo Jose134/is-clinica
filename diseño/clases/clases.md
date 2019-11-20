@@ -70,7 +70,7 @@
 **Descripción:** Almacena los datos del tratamiento de un paciente
 **Datos:**
 
- * medicamente string; Medicamente recetado al paciente
+ * medicamento string; Medicamento recetado al paciente
  * dosis int; Dosis del medicamente (en miligramos)
  * frecuencia int; Frecuencia con la que se debe tomar el medicamente (en horas)
  * comienzo string; Fecha de comienzo del tratamiento
