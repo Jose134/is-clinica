@@ -5,18 +5,23 @@ using namespace std;
 
 class Cita{
 
-	private: 
+	private:
 		string _fecha;
 		int _duracion;
 		string _hora;
-	
+
 	public:
-		Cita();
-	
+
+		Cita(string fecha, int duracion, string hora){
+			_fecha=fecha;
+			_duracion=duracion;
+			_hora=hora;
+		}
+
 		string getFecha(){
 			return _fecha;
 		}
-	
+
 		int getDuracion(){
 			return _duracion;
 		}
@@ -38,4 +43,4 @@ class Cita{
 		}
 };
 
-#endif 
+#endif
