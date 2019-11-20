@@ -28,7 +28,22 @@ class Paciente {
         std::list<Cita> _citas;
 
     public:
-        
+        Paciente (
+            std::string DNI,
+            std::string nombreCompleto,
+            int telefono,
+            std::string direccion,
+            std::string fechaNacimiento,
+            Procedencia procedencia    
+        ) {
+            _DNI = DNI;
+            _nombreCompleto = nombreCompleto;
+            _telefono = telefono;
+            _direccion = direccion;
+            _fechaNacimiento = fechaNacimiento;
+            _procedencia = procedencia;
+        }
+
         std::string getDNI () {
             return _DNI;
         }

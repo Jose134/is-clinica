@@ -11,12 +11,14 @@ class FileIO {
         static FileIO* _instance; //Singleton instance
         std::string _path;
         
-        FileIO () {}
+        FileIO (std::string path) {
+            _path = path;
+        }
 
     public:
         static FileIO* getInstance() {
             if (_instance == NULL) {
-                _instance = new FileIO();
+                _instance = new FileIO("pacientes.bin"); //Archivo de pacientes default
             }
 
             return _instance;
