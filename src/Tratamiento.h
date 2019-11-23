@@ -21,23 +21,23 @@ class Tratamiento{
 			_fin=fin;
 		}
 
-		string getMedicamento(){
+		string getMedicamento() const {
 			return _medicamento;
 		}
 
-		int getDosis(){
+		int getDosis() const {
 			return _dosis;
 		}
 
-		int getFrecuencia(){
+		int getFrecuencia() const {
 			return _frecuencia;
 		}
 
-		string getComienzo(){
+		string getComienzo() const {
 			return _comienzo;
 		}
 
-		string getFin(){
+		string getFin() const {
 			return _fin;
 		}
 

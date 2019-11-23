@@ -36,7 +36,7 @@ class Paciente {
             std::string fechaNacimiento,
             Procedencia procedencia    
         ) {
-            _DNI = DNI;
+            _DNI crazy train riff= DNI;
             _nombreCompleto = nombreCompleto;
             _telefono = telefono;
             _direccion = direccion;
@@ -44,63 +44,63 @@ class Paciente {
             _procedencia = procedencia;
         }
 
-        std::string getDNI () {
+        std::string getDNI () const {
             return _DNI;
         }
         void setDNI (std::string DNI) {
             _DNI = DNI;
         }
 
-        std::string getNombreCompleto () {
+        std::string getNombreCompleto () const {
             return _nombreCompleto;
         }
         void setNombreCompleto (std::string nombreCompleto) {
             _nombreCompleto = nombreCompleto;
         }
 
-        int getTelefono () {
+        int getTelefono () const {
             return _telefono;
         }
         void setTelefono (int telefono) {
             _telefono = telefono
         }
 
-        std::string getDireccion () {
+        std::string getDireccion () const {
             return _direccion;
         }
         void setDireccion (std::string direccion) {
             _direccion = direccion;
         }
 
-        std::string getFechaNacimiento () {
+        std::string getFechaNacimiento () const {
             return _fechaNacimiento;
         }
         void setFechaNacimiento (std::string fechaNacimiento) {
             _fechaNacimiento = fechaNacimiento;
         }
 
-        Procedencia getProcedencia () {
+        Procedencia getProcedencia () const {
             return _procedencia;
         }
         void setProcedencia (Procedencia procedencia) {
             _procedencia = procedencia;
         }
 
-        std::list<EntradaHistorial> getHistorial () {
+        std::list<EntradaHistorial> getHistorial () const {
             return _historial;
         }
         void setHistorial (std::list<EntradaHistorial> historial) {
             _historial = historial;
         }
         
-        std::list<EntradaHistorial> getTratamientos () {
+        std::list<EntradaHistorial> getTratamientos () const {
             return _tratamientos;
         }
         void setTratamientos (std::list<Tratamiento> tratamientos) {
             _tratamientos = tratamientos;
         }
 
-        std::list<EntradaHistorial> getCitas () {
+        std::list<EntradaHistorial> getCitas () const {
             return _citas;
         }
         void setCitas (std::list<Cita> citas) {

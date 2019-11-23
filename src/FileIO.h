@@ -24,7 +24,7 @@ class FileIO {
             return _instance;
         }
 
-        std::string getPath () {
+        std::string getPath () const {
             return _path;
         }
         void setPath (std::string path) {
@@ -36,7 +36,7 @@ class FileIO {
         std::list<Paciente> getTodosPacientes(); //Devuelve una lista con todos los pacientes
         std::list<Cita> getTodasCitas(); //Devuelve todas las citas
         std::list<Cita> getCitasHoy(); //Devuelve las citas para el día de hoy
-        void guardarPaciente(Paciente p); //Guarda los datos de un paciente
+        void guardarPaciente(const Paciente &p); //Guarda los datos de un paciente
         
 
 };
