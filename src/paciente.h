@@ -93,14 +93,14 @@ class Paciente {
             _historial = historial;
         }
         
-        std::list<EntradaHistorial> getTratamientos () const {
+        std::list<Tratamiento> getTratamientos () const {
             return _tratamientos;
         }
         void setTratamientos (std::list<Tratamiento> tratamientos) {
             _tratamientos = tratamientos;
         }
 
-        std::list<EntradaHistorial> getCitas () const {
+        std::list<Cita> getCitas () const {
             return _citas;
         }
         void setCitas (std::list<Cita> citas) {
