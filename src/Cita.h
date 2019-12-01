@@ -6,9 +6,9 @@ using namespace std;
 class Cita{
 
 	private:
-		string _fecha;
-		int _duracion;
-		string _hora;
+		string _fecha; //DD/MM/YYYY
+		int _duracion; //En minutos
+		string _hora;  //Hora:Minuto HH:MM
 
 	public:
 

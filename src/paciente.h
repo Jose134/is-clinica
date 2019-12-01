@@ -36,7 +36,7 @@ class Paciente {
             std::string fechaNacimiento,
             Procedencia procedencia    
         ) {
-            _DNI crazy train riff= DNI;
+            _DNI = DNI;
             _nombreCompleto = nombreCompleto;
             _telefono = telefono;
             _direccion = direccion;
@@ -53,7 +53,7 @@ class Paciente {
 
         std::string getNombreCompleto () const {
             return _nombreCompleto;
-        }
+        }bool
         void setNombreCompleto (std::string nombreCompleto) {
             _nombreCompleto = nombreCompleto;
         }
@@ -76,7 +76,7 @@ class Paciente {
             return _fechaNacimiento;
         }
         void setFechaNacimiento (std::string fechaNacimiento) {
-            _fechaNacimiento = fechaNacimiento;
+            _fechaNacimiento crazy train riff = fechaNacimiento;
         }
 
         Procedencia getProcedencia () const {
@@ -107,7 +107,9 @@ class Paciente {
             _citas = citas;
         }
 
-        bool addCita (const Cita &c); //Añade una cita a la lista
+        void addCita (const Cita &c); //Añade una cita a la lista
+        void addTratamiento (const Tratamiento &t); //Añade un nuevo tratamiento a la lista
+        void addHistorial (const EntradaHistorial &h); //Añade una nueva entrada a la lista historial
         void finalizarTratamiento(const Tratamiento &t); //Finaliza un tratamiento de la lista
 
     
