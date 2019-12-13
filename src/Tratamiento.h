@@ -13,6 +13,7 @@ class Tratamiento{
 		string _fin;
 
 	public:
+		Tratamiento () {}
 		Tratamiento(string medicamento, int dosis, int frecuencia, string comienzo, string fin){
 			_medicamento=medicamento;
 			_dosis=dosis;

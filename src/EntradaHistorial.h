@@ -5,7 +5,7 @@
 
 struct EntradaHistorial{
 	std::string fecha;
-   	std::string sistomas;
+   	std::string sintomas;
 };
 
 #endif

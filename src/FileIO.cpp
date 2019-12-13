@@ -34,11 +34,55 @@ std::list<Cita> FileIO::getCitasPaciente (std::string dni) {
 }
 
 std::list<Tratamiento> FileIO::getTratamientosPaciente (std::string dni) {
+    std::list<Tratamiento> tratamientos;
 
+    std::ifstream file(dni + "_tratamientos.txt");
+    if (file) {
+        while (!file.eof) {
+            Tratamiento t;
+            std::string aux;
+
+            file >> aux;
+            t.setMedicamento(aux);
+
+            file >> aux;
+            t.setDosis(std::stoi(aux));
+
+            file >> aux;
+            t.setFrecuencia(std::stoi(aux));
+            
+            file >> aux;
+            t.setComienzo(aux);
+
+            file >> aux;
+            t.setFin(aux);
+
+            tratamientos.push_back(t);
+        }
+        file.close();
+    }
+
+    return tratamientos;
 }
 
 std::list<EntradaHistorial> FileIO::getHistorialPaciente (std::string dni) {
+    std::list<EntradaHistorial> historial;
 
+    std::ifstream file(dni + "_citas.txt");
+    if (file) {
+        while (!file.eof) {
+            EntradaHistorial e;
+            std::string aux;
+
+            file >> e.fecha;
+            file >> e.sintomas;
+
+            historial.push_back(e);
+        }
+        file.close();
+    }
+
+    return historial;
 }
 
 int FileIO::exists (std::string nombre) {
