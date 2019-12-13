@@ -21,13 +21,14 @@ class Paciente {
         std::string _direccion;
         std::string _fechaNacimiento;
 
-        Procendencia _procedencia;
+        Procedencia _procedencia;
 
         std::list<EntradaHistorial> _historial;
         std::list<Tratamiento> _tratamientos;
         std::list<Cita> _citas;
 
     public:
+        Paciente () {}
         Paciente (
             std::string DNI,
             std::string nombreCompleto,
@@ -53,7 +54,7 @@ class Paciente {
 
         std::string getNombreCompleto () const {
             return _nombreCompleto;
-        }bool
+        }
         void setNombreCompleto (std::string nombreCompleto) {
             _nombreCompleto = nombreCompleto;
         }
@@ -62,7 +63,7 @@ class Paciente {
             return _telefono;
         }
         void setTelefono (int telefono) {
-            _telefono = telefono
+            _telefono = telefono;
         }
 
         std::string getDireccion () const {
@@ -76,7 +77,7 @@ class Paciente {
             return _fechaNacimiento;
         }
         void setFechaNacimiento (std::string fechaNacimiento) {
-            _fechaNacimiento crazy train riff = fechaNacimiento;
+            _fechaNacimiento = fechaNacimiento;
         }
 
         Procedencia getProcedencia () const {

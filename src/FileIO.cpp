@@ -7,33 +7,24 @@
 #include <iostream>
 #include <list>
 
-struct RegCita {
-    char fecha[10];
-    int duracion;
-    char hora[5];
-};
-
-struct RegPaciente {
-    char dni[9];
-    char nombreCompleto[100];
-    int telefono;
-    char direccion[200] ;
-    char fechaNacimiento[10];
-    int procedencia;
-};
-
 std::list<Cita> FileIO::getCitasPaciente (std::string dni) {
     std::list<Cita> citas;
 
-    std::ifstream file(dni + ".bin", ios::binary);
+    std::ifstream file(dni + "_citas.txt");
     if (file) {
-        RegCita reg;
         while (!file.eof) {
-            file.read(reg.fecha, 10);
-            file.read(reinterpret_cast<char*>(&reg.duracion), sizeof(reg.duracion));
-            file.read(reg.hora, 5);
+            Cita c;
+            std::string aux;
 
-            Cita c(std::string(reg.fecha), reg.duracion, std::string(reg.hora));
+            file >> aux;
+            c.setFecha(aux);
+
+            file >> aux;
+            c.setDuracion(std::stoi(aux));
+
+            file >> aux;
+            c.setHora(aux);
+
             citas.push_back(c);
         }
         file.close();
@@ -54,16 +45,13 @@ int FileIO::exists (std::string nombre) {
     std::ifstream file(_path, fstream::in | fstream::binary);
     if (file) {
         int count = 0;
-        RegPaciente reg;
         while (!file.eof) {
-            file.read(reg.dni, 9);
-            file.read(reg.nombreCompleto, 100);
-            file.read(reinterpret_cast<char*>(&reg.telefono), sizeof(int));
-            file.read(reg.direccion, 200);
-            file.read(reg.fechaNacimiento, 10);
-            file.read(reinterpret_cast<char*>(&reg.procedencia), sizeof(int));
-        
-            if (std::string(reg.nombreCompleto) == nombre) {
+            std::string aux;
+            file >> aux >> aux;
+
+            file.ignore(std::numeric_limits<streamsize>::max(), '\n');
+
+            if (aux == nombre) {
                 file.close();
                 return count;
             }
@@ -83,59 +71,62 @@ std::list<Paciente> FileIO::getTodosPacientes () {
     
     std::ifstream file(_path);
     if (file) {
-        RegPaciente reg;
         while (!file.eof) {
-            file.read(reg.dni, 9);
-            file.read(reg.nombreCompleto, 100);
-            file.read(reinterpret_cast<char*>(&reg.telefono), sizeof(int));
-            file.read(reg.direccion, 200);
-            file.read(reg.fechaNacimiento, 10);
-            file.read(reinterpret_cast<char*>(&reg.procedencia), sizeof(int));
-        
-            Paciente p(
-                std::string(reg.dni),
-                std::string(reg.nombreCompleto),
-                reg.telefono,
-                std::string(reg.direccion),
-                std::string(reg.fechaNacimiento),
-                (Procedencia)reg.procedencia
-            );
+            Paciente p;
+            std::string aux;
+
+            file >> aux;
+            p.setDNI(aux);
+
+            file >> aux;
+            p.setNombreCompleto(aux);
+
+            file >> aux;
+            p.setTelefono(std::stoi(aux));
+
+            file >> aux;
+            p.setDireccion(aux);
+
+            file >> aux;
+            p.setFechaNacimiento(aux);
+
+            file >> aux;
+            p.setProcedencia((Procedencia)std::stoi(aux));
+
+            p.setCitas(getCitasPaciente(p.getDNI()));
+            p.setTratamientos(getTratamientosPaciente(p.getDNI()));
+            p.setHistorial(getHistorialPaciente(p.getDNI()));
+
             pacientes.push_back(p);
         }
 
-        file.close();15 Dec 2019
+        file.close();
     }
 
     return pacientes;
 }
 
 void FileIO::guardarPaciente (const Paciente &p) {
-    std::fstream file(_path, fstream::in | fstream::out | fstream::app | fstream::binary);
+    int result = exists(p.getNombreCompleto());
+
+    std::fstream file(_path, fstream::in | fstream::out);
     if (file) {
-        int result = exists(p.getNombreCompleto());
-        if (result > 0) {
-            //Reemplazar paciente
-            file.seekp(result * (sizeof(char)*319 + sizeof(int)*2), file.beg);
+        if (result >= 0) {
+            //Se desplaza a la posicion del paciente
+            file.ignore(std::numeric_limits<streamsize>::max(), 6*result);
         }
         else {
-            //Añadir al final{
+            //Añadir al final
             file.seekp(0, file.end);
         }
 
-        RegPaciente reg;
-        std::copy(p.getDNI().begin(), p.getDNI().end(), reg.dni);
-        std::copy(p.getNombreCompleto().begin(), p.getNombreCompleto().end(), reg.nombreCompleto);
-        std::copy(p.getDireccion().begin(), p.getDireccion().end(), reg.direccion);
-        std::copy(p.getFechaNacimiento().begin(), p.getFechaNacimiento().end(), reg.fechaNacimiento);
-        reg.telefono = p.getTelefono();
-        reg.procedencia = p.getProcedencia();
-
-
-        file.write(reg.dni, 9);
-        file.write(reg.nombreCompleto, 100);
-        file.write(reinterpret_cast<char*>(&reg.telefono), sizeof(reg.telefono));
-        file.write(reg.direccion, 200);
-        file.write(reg.fechaNacimiento, 10);
+        file << p.getDNI()              << std::endl;
+        file << p.getNombreCompleto()   << std::endl;
+        file << p.getTelefono()         << std::endl;
+        file << p.getDireccion()        << std::endl;
+        file << p.getFechaNacimiento()  << std::endl;
+        file << (int)p.getProcedencia() << std::endl;
+        
 
         file.close();
     }

@@ -12,6 +12,12 @@ class Cita{
 
 	public:
 
+		Cita () {
+			_fecha = "";
+			_duracion = -1;
+			_hora = "";
+		}
+
 		Cita(string fecha, int duracion, string hora) {
 			_fecha=fecha;
 			_duracion=duracion;

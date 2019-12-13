@@ -5,7 +5,6 @@
 #include <list>
 #include "paciente.h"
 
-
 class FileIO {
     private:
         static FileIO* _instance; //Singleton instance
@@ -22,7 +21,7 @@ class FileIO {
     public:
         static FileIO* getInstance() {
             if (_instance == NULL) {
-                _instance = new FileIO("pacientes.bin"); //Archivo de pacientes default
+                _instance = new FileIO("pacientes.txt"); //Archivo de pacientes default
             }
 
             return _instance;
