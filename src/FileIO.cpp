@@ -7,6 +7,31 @@
 #include <iostream>
 #include <list>
 
+std::list<Cita> FileIO::getTodasCitas () {
+    std::list<Cita> citas;
+
+    std::ifstream file_pacientes(_path);
+    if (file_pacientes) {
+        while (!file_pacientes.eof()) {
+            //Lee el dni del paciente
+            std::string dni;
+            file_pacientes >> dni;
+
+            //Se salta el resto de campos del paciente
+            for (int i = 0; i < 5; i++) {
+                file_pacientes.ignore(std::numeric_limits<streamsize>::max(), '\n');
+            }
+
+            std::list<Cita> citas_paciente = getCitasPaciente(dni); //Coge las citas del paciente leido
+            citas.insert(citas.end(), citas_paciente.begin(), citas_paciente.end()); //Copia citas_paciente al final de citas
+
+        }
+        file_pacientes.close();
+    }
+
+    return citas;
+}
+
 std::list<Cita> FileIO::getCitasPaciente (std::string dni) {
     std::list<Cita> citas;
 
@@ -157,7 +182,9 @@ void FileIO::guardarPaciente (const Paciente &p) {
     if (file) {
         if (result >= 0) {
             //Se desplaza a la posicion del paciente
-            file.ignore(std::numeric_limits<streamsize>::max(), 6*result);
+            for (int i = 0; i < 6*result; i++) {
+                file.ignore(std::numeric_limits<streamsize>::max(), '\n');
+            }
         }
         else {
             //Añadir al final
@@ -170,6 +197,8 @@ void FileIO::guardarPaciente (const Paciente &p) {
         file << p.getDireccion()        << std::endl;
         file << p.getFechaNacimiento()  << std::endl;
         file << (int)p.getProcedencia() << std::endl;
+
+        //TODO: Guardar las listas
         
 
         file.close();
