@@ -175,6 +175,54 @@ std::list<Paciente> FileIO::getTodosPacientes () {
     return pacientes;
 }
 
+std::list<Paciente> FileIO::buscarPacientes (std::string name) {
+    std::ifstream file(_path);
+    std::list<Paciente> pacientes;
+
+    if (file) {
+        file.close();
+
+        while (!file.eof) {
+            Paciente p;
+            std::string aux;
+
+            file >> aux;
+            p.setDNI(aux);
+
+            file >> aux;
+            p.setNombreCompleto(aux);
+
+            if (aux == name) {
+                file >> aux;
+                p.setTelefono(std::stoi(aux));
+
+                file >> aux;
+                p.setDireccion(aux);
+
+                file >> aux;
+                p.setFechaNacimiento(aux);
+
+                file >> aux;
+                p.setProcedencia((Procedencia)std::stoi(aux));
+
+                p.setCitas(getCitasPaciente(p.getDNI()));
+                p.setTratamientos(getTratamientosPaciente(p.getDNI()));
+                p.setHistorial(getHistorialPaciente(p.getDNI()));
+
+                pacientes.push_back(p);
+            }
+            else {
+                for (int i = 0; i < 4; i++) {
+                    file.ignore(std::numeric_limits<streamsize>::max(), '\n');
+                }
+            }
+            
+        }
+    }
+
+    return pacientes;
+}
+
 void FileIO::guardarPaciente (const Paciente &p) {
     int result = exists(p.getNombreCompleto());
 
