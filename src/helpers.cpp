@@ -2,6 +2,15 @@
 #include <string>
 #include <iostream>
 
+#include <list>
+
+#include "paciente.h"
+
+//Prints colored text
+void colorPrint (const std::string &str, int color, bool bold) {
+    std::cout << "\033[" << (bold ? "1" : "0") << ";" << color << "m" << str << "\033[0m";
+}
+
 //Extrae la hora de una string con formato HH:MM
 int strGetHora (const std::string &str) {
     std::string hora = str.substr(0, 2);
@@ -9,7 +18,7 @@ int strGetHora (const std::string &str) {
 }
 
 //Extrae los minutos de una string con formato HH:MM
-int strGetMInutos (const std::string &str) {
+int strGetMinutos (const std::string &str) {
     std::string minuto = str.substr(3, 2);
     return std::stoi(minuto);
 }
@@ -44,5 +53,19 @@ bool solapanCitas (const Cita &c1, const Cita &c2) {
     }
     else {
         return false;
+    }
+}
+
+void printPacientes (std::list<Paciente> pacientes) {
+    std::cout << "Nombre                    " << "Telefono"     << std::endl;
+    std::cout << "--------------------------------------------" << std::endl;
+    std::cout << pacientes.size() << std::endl;
+
+    for (Paciente &p : pacientes) {
+        colorPrint(p.getNombreCompleto() + " ", Color::FG_MAGENTA, false);
+        colorPrint("" + p.getTelefono(), Color::FG_MAGENTA, false);
+        std::cout << p.getNombreCompleto() << "    ";
+        std::cout << p.getTelefono() << std::endl;
+        std::cout << std::endl;
     }
 }

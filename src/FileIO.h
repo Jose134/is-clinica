@@ -19,13 +19,7 @@ class FileIO {
         std::list<EntradaHistorial> getHistorialPaciente (std::string dni);
 
     public:
-        static FileIO* getInstance() {
-            if (_instance == NULL) {
-                _instance = new FileIO("pacientes.txt"); //Archivo de pacientes default
-            }
-
-            return _instance;
-        }
+        static FileIO* getInstance();
 
         std::string getPath () const {
             return _path;

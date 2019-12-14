@@ -6,6 +6,17 @@
 #include <fstream>
 #include <iostream>
 #include <list>
+#include <limits>
+
+FileIO* FileIO::_instance = NULL;
+
+FileIO* FileIO::getInstance () {
+    if (_instance == NULL) {
+        _instance = new FileIO("pacientes.txt"); //Archivo de pacientes default
+    }
+
+    return _instance;
+}
 
 std::list<Cita> FileIO::getTodasCitas () {
     std::list<Cita> citas;
@@ -37,17 +48,17 @@ std::list<Cita> FileIO::getCitasPaciente (std::string dni) {
 
     std::ifstream file(dni + "_citas.txt");
     if (file) {
-        while (!file.eof) {
+        while (!file.eof()) {
             Cita c;
             std::string aux;
 
-            file >> aux;
+            getline(file, aux);
             c.setFecha(aux);
 
-            file >> aux;
+            getline(file, aux);
             c.setDuracion(std::stoi(aux));
 
-            file >> aux;
+            getline(file, aux);
             c.setHora(aux);
 
             citas.push_back(c);
@@ -63,23 +74,23 @@ std::list<Tratamiento> FileIO::getTratamientosPaciente (std::string dni) {
 
     std::ifstream file(dni + "_tratamientos.txt");
     if (file) {
-        while (!file.eof) {
+        while (!file.eof()) {
             Tratamiento t;
             std::string aux;
 
-            file >> aux;
+            getline(file, aux);
             t.setMedicamento(aux);
 
-            file >> aux;
+            getline(file, aux);
             t.setDosis(std::stoi(aux));
 
-            file >> aux;
+            getline(file, aux);
             t.setFrecuencia(std::stoi(aux));
             
-            file >> aux;
+            getline(file, aux);
             t.setComienzo(aux);
 
-            file >> aux;
+            getline(file, aux);
             t.setFin(aux);
 
             tratamientos.push_back(t);
@@ -95,7 +106,7 @@ std::list<EntradaHistorial> FileIO::getHistorialPaciente (std::string dni) {
 
     std::ifstream file(dni + "_citas.txt");
     if (file) {
-        while (!file.eof) {
+        while (!file.eof()) {
             EntradaHistorial e;
             std::string aux;
 
@@ -114,7 +125,7 @@ int FileIO::exists (std::string nombre) {
     std::ifstream file(_path, fstream::in | fstream::binary);
     if (file) {
         int count = 0;
-        while (!file.eof) {
+        while (!file.eof()) {
             std::string aux;
             file >> aux >> aux;
 
@@ -140,26 +151,26 @@ std::list<Paciente> FileIO::getTodosPacientes () {
     
     std::ifstream file(_path);
     if (file) {
-        while (!file.eof) {
+        while (!file.eof()) {
             Paciente p;
             std::string aux;
 
-            file >> aux;
+            getline(file, aux);
             p.setDNI(aux);
 
-            file >> aux;
+            getline(file, aux);
             p.setNombreCompleto(aux);
 
-            file >> aux;
+            getline(file, aux);
             p.setTelefono(std::stoi(aux));
 
-            file >> aux;
+            getline(file, aux);
             p.setDireccion(aux);
 
-            file >> aux;
+            getline(file, aux);
             p.setFechaNacimiento(aux);
 
-            file >> aux;
+            getline(file, aux);
             p.setProcedencia((Procedencia)std::stoi(aux));
 
             p.setCitas(getCitasPaciente(p.getDNI()));
@@ -167,9 +178,14 @@ std::list<Paciente> FileIO::getTodosPacientes () {
             p.setHistorial(getHistorialPaciente(p.getDNI()));
 
             pacientes.push_back(p);
+
+            file.get();
         }
 
         file.close();
+    }
+    else {
+        std::cerr << "couldn't open <" << _path << ">" << std::endl;
     }
 
     return pacientes;
@@ -182,27 +198,27 @@ std::list<Paciente> FileIO::buscarPacientes (std::string name) {
     if (file) {
         file.close();
 
-        while (!file.eof) {
+        while (!file.eof()) {
             Paciente p;
             std::string aux;
 
-            file >> aux;
+            getline(file, aux);
             p.setDNI(aux);
 
-            file >> aux;
+            getline(file, aux);
             p.setNombreCompleto(aux);
 
             if (aux == name) {
-                file >> aux;
+                getline(file, aux);
                 p.setTelefono(std::stoi(aux));
 
-                file >> aux;
+                getline(file, aux);
                 p.setDireccion(aux);
 
-                file >> aux;
+                getline(file, aux);
                 p.setFechaNacimiento(aux);
 
-                file >> aux;
+                getline(file, aux);
                 p.setProcedencia((Procedencia)std::stoi(aux));
 
                 p.setCitas(getCitasPaciente(p.getDNI()));
