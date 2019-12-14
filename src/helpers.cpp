@@ -57,15 +57,37 @@ bool solapanCitas (const Cita &c1, const Cita &c2) {
 }
 
 void printPacientes (std::list<Paciente> pacientes) {
-    std::cout << "Nombre                    " << "Telefono"     << std::endl;
-    std::cout << "--------------------------------------------" << std::endl;
-    std::cout << pacientes.size() << std::endl;
+    
+    int longest = 0;
+    for (Paciente &p : pacientes) {
+        int size = p.getNombreCompleto().size();
+        if (size > longest) {
+            longest = size;
+        }
+    }
+
+    std::cout << "Nombre";
+    for (int i = 0; i < longest - 4; i++) {
+        std::cout << " ";
+    }
+    std::cout << "Telefono" << std::endl;
+    
+    for (int i = 0; i < longest+13; i++) {
+        std::cout << "-";
+    }
+    std::cout << std::endl;
 
     for (Paciente &p : pacientes) {
-        colorPrint(p.getNombreCompleto() + " ", Color::FG_MAGENTA, false);
-        colorPrint("" + p.getTelefono(), Color::FG_MAGENTA, false);
-        std::cout << p.getNombreCompleto() << "    ";
-        std::cout << p.getTelefono() << std::endl;
+        std::string line;
+        line += p.getNombreCompleto();
+
+        int spaces = longest-line.size() + 2;
+        for (int i = 0; i < spaces; i++) {
+            line += " ";
+        }
+        line += std::to_string(p.getTelefono());
+
+        colorPrint(line, Color::FG_MAGENTA, false);
         std::cout << std::endl;
     }
 }
