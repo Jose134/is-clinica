@@ -24,6 +24,11 @@ std::list<Cita> FileIO::getTodasCitas () {
     std::ifstream file_pacientes(_path);
     if (file_pacientes) {
         while (!file_pacientes.eof()) {
+            //Checks if file is empty
+            if (file_pacientes.peek() == std::ifstream::traits_type::eof()) {
+                break;
+            }
+
             //Lee el dni del paciente
             std::string dni;
             file_pacientes >> dni;
@@ -49,6 +54,11 @@ std::list<Cita> FileIO::getCitasPaciente (std::string dni) {
     std::ifstream file(dni + "_citas.txt");
     if (file) {
         while (!file.eof()) {
+            //Checks if file is empty
+            if (file.peek() == std::ifstream::traits_type::eof()) {
+                break;
+            }
+
             Cita c;
             std::string aux;
 
@@ -62,6 +72,8 @@ std::list<Cita> FileIO::getCitasPaciente (std::string dni) {
             c.setHora(aux);
 
             citas.push_back(c);
+        
+            file.get();
         }
         file.close();
     }
@@ -75,6 +87,11 @@ std::list<Tratamiento> FileIO::getTratamientosPaciente (std::string dni) {
     std::ifstream file(dni + "_tratamientos.txt");
     if (file) {
         while (!file.eof()) {
+            //Checks if file is empty
+            if (file.peek() == std::ifstream::traits_type::eof()) {
+                break;
+            }
+
             Tratamiento t;
             std::string aux;
 
@@ -94,6 +111,8 @@ std::list<Tratamiento> FileIO::getTratamientosPaciente (std::string dni) {
             t.setFin(aux);
 
             tratamientos.push_back(t);
+
+            file.get();
         }
         file.close();
     }
@@ -107,6 +126,11 @@ std::list<EntradaHistorial> FileIO::getHistorialPaciente (std::string dni) {
     std::ifstream file(dni + "_citas.txt");
     if (file) {
         while (!file.eof()) {
+            //Checks if file is empty
+            if (file.peek() == std::ifstream::traits_type::eof()) {
+                break;
+            }
+
             EntradaHistorial e;
             std::string aux;
 
@@ -114,6 +138,8 @@ std::list<EntradaHistorial> FileIO::getHistorialPaciente (std::string dni) {
             file >> e.sintomas;
 
             historial.push_back(e);
+
+            file.get();
         }
         file.close();
     }
@@ -121,21 +147,32 @@ std::list<EntradaHistorial> FileIO::getHistorialPaciente (std::string dni) {
     return historial;
 }
 
-int FileIO::exists (std::string nombre) {
-    std::ifstream file(_path, fstream::in | fstream::binary);
+int FileIO::exists (std::string dni) {
+    std::ifstream file(_path);
     if (file) {
         int count = 0;
         while (!file.eof()) {
+            //Checks if file is empty
+            if (file.peek() == std::ifstream::traits_type::eof()) {
+                break;
+            }
+
             std::string aux;
-            file >> aux >> aux;
+            file >> aux;
 
-            file.ignore(std::numeric_limits<streamsize>::max(), '\n');
-
-            if (aux == nombre) {
+            std::cout << "<" << aux << "> <" << dni << ">" << std::endl;
+            if (aux == dni) {
                 file.close();
                 return count;
             }
+
+            for (int i = 0; i < 5; i++) {
+                file.ignore(std::numeric_limits<streamsize>::max(), '\n');
+            }
+            
             count++;
+
+            file.get();
         }
 
         file.close();
@@ -152,6 +189,11 @@ std::list<Paciente> FileIO::getTodosPacientes () {
     std::ifstream file(_path);
     if (file) {
         while (!file.eof()) {
+            //Checks if file is empty
+            if (file.peek() == std::ifstream::traits_type::eof()) {
+                break;
+            }
+
             Paciente p;
             std::string aux;
 
@@ -191,14 +233,17 @@ std::list<Paciente> FileIO::getTodosPacientes () {
     return pacientes;
 }
 
-std::list<Paciente> FileIO::buscarPacientes (std::string name) {
+std::list<Paciente> FileIO::buscarPacientes (std::string nombre) {
     std::ifstream file(_path);
     std::list<Paciente> pacientes;
 
     if (file) {
-        file.close();
-
         while (!file.eof()) {
+            //Checks if file is empty
+            if (file.peek() == std::ifstream::traits_type::eof()) {
+                break;
+            }
+
             Paciente p;
             std::string aux;
 
@@ -207,8 +252,9 @@ std::list<Paciente> FileIO::buscarPacientes (std::string name) {
 
             getline(file, aux);
             p.setNombreCompleto(aux);
+            
+            if (aux == nombre) {
 
-            if (aux == name) {
                 getline(file, aux);
                 p.setTelefono(std::stoi(aux));
 
@@ -234,13 +280,15 @@ std::list<Paciente> FileIO::buscarPacientes (std::string name) {
             }
             
         }
+
+        file.close();
     }
 
     return pacientes;
 }
 
 void FileIO::guardarPaciente (const Paciente &p) {
-    int result = exists(p.getNombreCompleto());
+    int result = exists(p.getDNI());
 
     std::fstream file(_path, fstream::in | fstream::out);
     if (file) {
@@ -262,7 +310,33 @@ void FileIO::guardarPaciente (const Paciente &p) {
         file << p.getFechaNacimiento()  << std::endl;
         file << (int)p.getProcedencia() << std::endl;
 
-        //TODO: Guardar las listas
+        //Guarda las listas del paciente
+        std::ofstream listFile;
+
+        listFile.open(p.getDNI() + "_citas.txt");
+        for (Cita &c : p.getCitas()) {
+            listFile << c.getFecha()    << std::endl;
+            listFile << c.getDuracion() << std::endl;
+            listFile << c.getHora()     << std::endl;
+        }
+        listFile.close();
+
+        listFile.open(p.getDNI() + "_tratamientos.txt");
+        for (Tratamiento &t : p.getTratamientos()) {
+            listFile << t.getMedicamento() << std::endl;
+            listFile << t.getDosis()       << std::endl;
+            listFile << t.getFrecuencia()  << std::endl;
+            listFile << t.getComienzo()    << std::endl;
+            listFile << t.getFin()         << std::endl;
+        }
+        listFile.close();
+
+        listFile.open(p.getDNI() + "_historial.txt");
+        for (EntradaHistorial &e : p.getHistorial()) {
+            listFile << e.fecha    << std::endl;
+            listFile << e.sintomas << std::endl;
+        }
+        listFile.close();
         
 
         file.close();

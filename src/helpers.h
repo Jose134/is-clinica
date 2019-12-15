@@ -25,11 +25,16 @@ enum Color {
     BG_WHITE   = 47
 };
 
+static bool USE_COLORS = true;
+
+void setColors (bool use);
 void colorPrint (const std::string &str, int color, bool bold);
 int strGetHora(const std::string &str);
 int strGetMinutos(const std::string &str);
 bool solapanCitas(const Cita &c1, const Cita &c2);
 
+bool compFechas (const std::string &f1, const std::string &f2);
 void printPacientes (std::list<Paciente> pacientes);
+void printCitas (std::list<Cita> citas);
 
 #endif

@@ -6,9 +6,18 @@
 
 #include "paciente.h"
 
+void setColors (bool use) {
+    USE_COLORS = use;
+}
+
 //Prints colored text
 void colorPrint (const std::string &str, int color, bool bold) {
-    std::cout << "\033[" << (bold ? "1" : "0") << ";" << color << "m" << str << "\033[0m";
+    if (USE_COLORS) {
+        std::cout << "\033[" << (bold ? "1" : "0") << ";" << color << "m" << str << "\033[0m";
+    }
+    else {
+        std::cout << str;
+    }
 }
 
 //Extrae la hora de una string con formato HH:MM
@@ -89,5 +98,53 @@ void printPacientes (std::list<Paciente> pacientes) {
 
         colorPrint(line, Color::FG_MAGENTA, false);
         std::cout << std::endl;
+    }
+}
+
+bool compFechasCitas (const Cita &c1, const Cita &c2) {
+    const std::string f1 = c1.getFecha();
+    const std::string f2 = c2.getFecha();
+
+    int y1 = std::stoi(f1.substr(6, 4));
+    int y2 = std::stoi(f2.substr(6, 4));
+    
+    if (y1 == y2) {
+        int m1 = std::stoi(f1.substr(3, 2));
+        int m2 = std::stoi(f2.substr(3, 2));
+
+        if (m1 == m2) {
+            int d1 = std::stoi(f1.substr(0, 2));
+            int d2 = std::stoi(f2.substr(0, 2));
+        
+            if (d1 == d2) {
+                return false;
+            }
+            else {
+                return d1 > d2;
+            }
+        }
+        else {
+            return m1 > m2;
+        }
+    }
+    else {
+        return y1 > y2;
+    }
+}
+
+void printCitas (std::list<Cita> citas) {
+    std::list<Cita> sortedList = citas;
+    sortedList.sort(compFechasCitas);
+
+    std::string currentDate = "";
+    for (Cita &c : sortedList) {
+        if (c.getFecha() != currentDate) {
+            std::cout << c.getFecha() << std::endl;
+            std::cout << "---------------------------" << std::endl;
+
+            currentDate = c.getFecha();
+        }
+
+        std::cout << c.getHora() << "   |   " << c.getDuracion() << " minutos" << std::endl; 
     }
 }
