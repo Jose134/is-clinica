@@ -31,7 +31,7 @@ std::list<Cita> FileIO::getTodasCitas () {
 
             //Lee el dni del paciente
             std::string dni;
-            file_pacientes >> dni;
+            getline(file_pacientes, dni);
 
             //Se salta el resto de campos del paciente
             for (int i = 0; i < 5; i++) {
@@ -156,11 +156,10 @@ int FileIO::exists (std::string dni) {
             if (file.peek() == std::ifstream::traits_type::eof()) {
                 break;
             }
-
+            
             std::string aux;
             file >> aux;
 
-            std::cout << "<" << aux << "> <" << dni << ">" << std::endl;
             if (aux == dni) {
                 file.close();
                 return count;

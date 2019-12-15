@@ -139,12 +139,13 @@ void printCitas (std::list<Cita> citas) {
     std::string currentDate = "";
     for (Cita &c : sortedList) {
         if (c.getFecha() != currentDate) {
-            std::cout << c.getFecha() << std::endl;
-            std::cout << "---------------------------" << std::endl;
+            std::cout << std::endl;
+            colorPrint("        " + c.getFecha() + "\n", Color::FG_CYAN, true);
+            colorPrint("--------------------------\n", Color::FG_CYAN, true);
 
             currentDate = c.getFecha();
         }
 
-        std::cout << c.getHora() << "   |   " << c.getDuracion() << " minutos" << std::endl; 
+        std::cout << " " << c.getHora() << " | " << c.getDuracion() << " minutos" << std::endl; 
     }
 }
