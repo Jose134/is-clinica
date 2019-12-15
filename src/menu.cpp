@@ -33,109 +33,109 @@ void menu(){
     cin>>num;
     switch(num){
 
-    case '1':{
+    case 1:{
 
       cout << "Has elejido nadir nuevo paciente."<<endl;
 
     }break;
 
-    case '2':{
+    case 2:{
 
       cout << "Has elejido Anadir nueva cita."<<endl;
 
     }break;
 
-    case '3':{
+    case 3:{
 
       cout << "Has elejido Anadir nuevo tratamiento a paciente."<<endl;
 
     }break;
 
-    case '4':{
+    case 4:{
 
       cout << "Has elejido Anadir nueva entrada a historial de paciente."<<endl;
 
     }break;
 
-    case '5':{
+    case 5:{
 
       cout << "Has elejido Mostrar citas."<<endl;
 
     }break;
 
-    case '6':{
+    case 6:{
 
       cout << "Has elejido Mostrar lista con pacientes."<<endl;
 
     }break;
 
-    case '7':{
+    case 7:{
 
       cout << "Has elejido Mostrar toda la informacion del paciente seleccionado."<<endl;
 
     }break;
 
-    case '8':{
+    case 8:{
 
       cout << "Has elejido Modificar paciente."<<endl;
 
     }break;
 
-    case '9':{
+    case 9:{
 
       cout << "Has elejido Modificar tratamiento."<<endl;
 
     }break;
 
-    case '10':{
+    case 10:{
 
       cout << "Has elejido Busqueda por nombre."<<endl;
 
     }break;
 
-    case '11':{
+    case 11:{
 
       cout << "Has elejido Borrar paciente."<<endl;
 
     }break;
 
-    case '12':{
+    case 12:{
 
       cout << "Has elejido Mover cita."<<endl;
 
     }break;
 
-    case '13':{
+    case 13:{
 
       cout << "Has elejido Cancelar cita."<<endl;
 
     }break;
 
-    case '14':{
+    case 14:{
 
       cout << "Has elejido Consultar citas de hoy."<<endl;
 
     }break;
 
-    case '15':{
+    case 15:{
 
       cout << "Has elejido Consultar citas de un paciente."<<endl;
 
     }break;
 
-    case '16':{
+    case 16:{
 
       cout << "Has elejido Consultar historial medico de un paciente."<<endl;
 
     }break;
 
-    case '17':{
+    case 17:{
 
       cout << "Has elejido Consultar tratamientos de un paciente."<<endl;
 
     }break;
 
-    case '18':{
+    case 18:{
 
       cout << "Has elejido Salir del programa."<<endl;
 
@@ -145,7 +145,7 @@ void menu(){
     default:{
 
 
-      cout << "Su numero no existe"<<endl;
+      cout << "su numero no existe"<<endl;
 
     }break;
 
