@@ -33,7 +33,6 @@ void menu(){
 
   int num=0;
   do{
-    system("clear");
     //colorPrint(line, Color::FG_MAGENTA, true);
     cout<<"MENU CLINICA:\n"<<endl;
 
