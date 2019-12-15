@@ -11,20 +11,6 @@
 #include <string>
 #include <list>
 
-#define OP_EXIT 0
-
-/*void menu (int opcion) {
-   switch (opcion) {
-      case 1:
-         printPacientes(FileIO::getInstance()->getTodosPacientes());
-         break;
-      case 2:
-         printCitas(FileIO::getInstance()->getTodasCitas());
-         break;
-   }
-}
-*/
-
 void menu(){
 
   int num=0;
@@ -34,132 +20,48 @@ void menu(){
     cout<<"MENU CLINICA:\n"<<endl;
 
     cout<<"Elige una de estas opciones:"<<endl;
-    cout<<"01. Anadir nuevo paciente"<<endl;
-    cout<<"02. Anadir nueva cita"<<endl;
-    cout<<"03. Anadir nuevo tratamiento a paciente"<<endl;
-    cout<<"04. Anadir nueva entrada a historial de paciente"<<endl;
-    cout<<"05. Mostrar citas"<<endl;
-    cout<<"06. Mostrar lista con pacientes"<<endl;
-    cout<<"07. Mostrar toda la informacion del paciente seleccionado"<<endl;
-    cout<<"08. Modificar paciente"<<endl;
-    cout<<"09. Modificar tratamiento"<<endl;
-    cout<<"10. Busqueda por nombre"<<endl;
-    cout<<"11. Borrar paciente"<<endl;
-    cout<<"12. Mover cita"<<endl;
-    cout<<"13. Cancelar cita"<<endl;
-    cout<<"14. Consultar citas de hoy"<<endl;
-    cout<<"15. Consultar citas de un paciente"<<endl;
-    cout<<"16. Consultar historial medico de un paciente"<<endl;
-    cout<<"17. Consultar tratamientos de un paciente"<<endl;
-    cout<<"18. Salir del programa\n"<<endl;
+    cout<<"1. Anadir nuevo paciente"<<endl;
+    cout<<"2. Mostrar citas"<<endl;
+    cout<<"3. Mostrar lista con pacientes"<<endl;
+    cout<<"4. Busqueda por nombre"<<endl;
+    cout<<"5. Consultar citas de hoy"<<endl;
+    cout<<"6. Salir del programa\n"<<endl;
     cin>>num;
     switch(num){
 
     case 1:{
-
+      system("clear");
       cout << "Has elejido nadir nuevo paciente."<<endl;
 
     }break;
 
     case 2:{
-
-      cout << "Has elejido Anadir nueva cita."<<endl;
-
-    }break;
-
-    case 3:{
-
-      cout << "Has elejido Anadir nuevo tratamiento a paciente."<<endl;
-
-    }break;
-
-    case 4:{
-
-      cout << "Has elejido Anadir nueva entrada a historial de paciente."<<endl;
-
-    }break;
-
-    case 5:{
+      system("clear");
       printCitas(FileIO::getInstance()->getTodasCitas());
       cout << "Has elejido Mostrar citas."<<endl;
 
     }break;
 
-    case 6:{
-
+    case 3:{
+      system("clear");
       cout << "Has elejido Mostrar lista con pacientes."<<endl;
 
     }break;
 
-    case 7:{
-
-      printPacientes(FileIO::getInstance()->getTodosPacientes());
-      cout << "Has elejido Mostrar toda la informacion del paciente seleccionado."<<endl;
-
-    }break;
-
-    case 8:{
-
-      cout << "Has elejido Modificar paciente."<<endl;
-
-    }break;
-
-    case 9:{
-
-      cout << "Has elejido Modificar tratamiento."<<endl;
-
-    }break;
-
-    case 10:{
-
+    case 4:{
+      system("clear");
       cout << "Has elejido Busqueda por nombre."<<endl;
 
     }break;
 
-    case 11:{
-
-      cout << "Has elejido Borrar paciente."<<endl;
-
-    }break;
-
-    case 12:{
-
-      cout << "Has elejido Mover cita."<<endl;
-
-    }break;
-
-    case 13:{
-
-      cout << "Has elejido Cancelar cita."<<endl;
-
-    }break;
-
-    case 14:{
-
+    case 5:{
+      system("clear");
       cout << "Has elejido Consultar citas de hoy."<<endl;
 
     }break;
 
-    case 15:{
-
-      cout << "Has elejido Consultar citas de un paciente."<<endl;
-
-    }break;
-
-    case 16:{
-
-      cout << "Has elejido Consultar historial medico de un paciente."<<endl;
-
-    }break;
-
-    case 17:{
-
-      cout << "Has elejido Consultar tratamientos de un paciente."<<endl;
-
-    }break;
-
-    case 18:{
-
+    case 6:{
+      system("clear");
       cout << "Has elejido Salir del programa."<<endl;
 
     }break;
@@ -167,16 +69,136 @@ void menu(){
 
     default:{
 
-
+      system("clear");
       cout << "su numero no existe"<<endl;
 
     }break;
 
   }
 
-}while(num!=18);
+}while(num!=6);
 
 }
+
+void menupaciente(){
+
+  int num=0;
+  do{
+    //colorPrint(line, Color::FG_MAGENTA, true);
+    cout<<"MENU Paciente:\n"<<endl;
+
+    cout<<"Ya elegido un paciente eleige que quieres hacer con el:"<<endl;
+    cout<<"01. Anadirle nueva cita"<<endl;
+    cout<<"02. Anadirle nuevo tratamiento"<<endl;
+    cout<<"03. Anadirle nueva entrada a historial"<<endl;
+    cout<<"04. Mostrar toda la informacion del paciente seleccionado"<<endl;
+    cout<<"05. Modicar paciente"<<endl;
+    cout<<"06. Modificarle el tratamiento"<<endl;
+    cout<<"07. Borrar paciente seleccionado"<<endl;
+    cout<<"08. Mover una cita del paciente"<<endl;
+    cout<<"09. Cancelarle una cita"<<endl;
+    cout<<"10. Consultar citas del paciente"<<endl;
+    cout<<"11. Consultar historial medico del paciente"<<endl;
+    cout<<"12. Consultar tratamientos del paciente"<<endl;
+    cout<<"13. Salir al menu principal\n"<<endl;
+    cin>>num;
+    switch(num){
+
+    case 1:{
+      system("clear");
+      cout << "Has elejido Anadirle nueva cita."<<endl;
+
+    }break;
+
+    case 2:{
+      system("clear");
+      cout << "Has elejido Anadirle nuevo tratamiento."<<endl;
+
+    }break;
+
+    case 3:{
+      system("clear");
+      cout << "Has elejido Anadirle nueva entrada a historial."<<endl;
+
+    }break;
+
+    case 4:{
+
+      system("clear");
+      printPacientes(FileIO::getInstance()->getTodosPacientes());
+      cout << "Has elejido Mostrar toda la informacion del paciente seleccionado."<<endl;
+
+    }break;
+
+    case 5:{
+      system("clear");
+      cout << "Has elejido Modificar paciente."<<endl;
+
+    }break;
+
+    case 6:{
+      system("clear");
+      cout << "Has elejido Modificarle el tratamiento."<<endl;
+
+    }break;
+
+    case 7:{
+      system("clear");
+      cout << "Has elejido Borrar paciente seleccionado."<<endl;
+
+    }break;
+
+    case 8:{
+      system("clear");
+      cout << "Has elejido Mover una cita del paciente."<<endl;
+
+    }break;
+
+    case 9:{
+      system("clear");
+      cout << "Has elejido Cancelarle una cita."<<endl;
+
+    }break;
+
+    case 10:{
+      system("clear");
+      cout << "Has elejido Consultar citas del paciente."<<endl;
+
+    }break;
+
+    case 11:{
+      system("clear");
+      cout << "Has elejido Consultar historial medico del paciente."<<endl;
+
+    }break;
+
+    case 12:{
+      system("clear");
+      cout << "Has elejido Consultar tratamientos del paciente."<<endl;
+
+    }break;
+
+
+    case 13:{
+      system("clear");
+      cout << "Has elejido Salir al menu principal."<<endl;
+
+    }break;
+
+
+    default:{
+
+      system("clear");
+      cout << "Su numero no existe"<<endl;
+
+    }break;
+
+  }
+
+  }while(num!=13);
+
+  }
+
 
 int main (int argc, char** argv) {
    if (argc > 1) {
@@ -191,13 +213,6 @@ int main (int argc, char** argv) {
    FileIO::getInstance()->guardarPaciente(p);
    
    menu();
+    //hay otro menu pero eso va cuando busques paciente
 
-   /*TO DO: Implement menu
-   int opcion = -1;
-   do {
-      std::cin >> opcion;
-
-      menu(opcion);
-   } while(opcion != OP_EXIT);
-   */
 }
