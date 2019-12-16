@@ -33,8 +33,10 @@ int strGetHora(const std::string &str);
 int strGetMinutos(const std::string &str);
 bool solapanCitas(const Cita &c1, const Cita &c2);
 
+int seleccionarPaciente (std::list<Paciente> pacientes);
+
 bool compFechas (const std::string &f1, const std::string &f2);
-void printPacientes (std::list<Paciente> pacientes);
+void printPacientes (std::list<Paciente> pacientes, int sel=-1);
 void printCitas (std::list<Cita> citas);
 
 #endif

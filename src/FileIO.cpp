@@ -7,6 +7,7 @@
 #include <iostream>
 #include <list>
 #include <limits>
+#include <ctime>
 
 FileIO* FileIO::_instance = NULL;
 
@@ -40,9 +41,31 @@ std::list<Cita> FileIO::getTodasCitas () {
 
             std::list<Cita> citas_paciente = getCitasPaciente(dni); //Coge las citas del paciente leido
             citas.insert(citas.end(), citas_paciente.begin(), citas_paciente.end()); //Copia citas_paciente al final de citas
-
         }
         file_pacientes.close();
+    }
+
+    return citas;
+}
+
+std::list<Cita> FileIO::getCitasHoy () {
+    std::list<Cita> citas;
+
+    //https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c
+    std::time_t t = std::time(0);
+    std::tm* now = std::localtime(&t);
+    std::string hoy = std::to_string(now->tm_mday) + "/" +
+                      std::to_string(now->tm_mon  + 1) + "/" +
+                      std::to_string(now->tm_year + 1900);
+
+    std::cout << hoy << std::endl;
+
+
+    std::list<Cita> todas = FileIO::getInstance()->getTodasCitas();
+    for (Cita &c : todas) {
+        if (c.getFecha() == hoy) {
+            citas.push_back(c);
+        }
     }
 
     return citas;
@@ -72,8 +95,6 @@ std::list<Cita> FileIO::getCitasPaciente (std::string dni) {
             c.setHora(aux);
 
             citas.push_back(c);
-        
-            file.get();
         }
         file.close();
     }
@@ -111,8 +132,6 @@ std::list<Tratamiento> FileIO::getTratamientosPaciente (std::string dni) {
             t.setFin(aux);
 
             tratamientos.push_back(t);
-
-            file.get();
         }
         file.close();
     }
@@ -138,8 +157,6 @@ std::list<EntradaHistorial> FileIO::getHistorialPaciente (std::string dni) {
             file >> e.sintomas;
 
             historial.push_back(e);
-
-            file.get();
         }
         file.close();
     }
