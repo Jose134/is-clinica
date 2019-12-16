@@ -1,10 +1,12 @@
 #include "helpers.h"
 #include <string>
 #include <iostream>
+#include <cctype>
 
 #include <list>
 
 #include "paciente.h"
+#include "FileIO.h"
 
 //Sets the USE_COLORS variable
 void setColors (bool use) {
@@ -91,6 +93,66 @@ int seleccionarPaciente (std::list<Paciente> pacientes) {
     return sel;
 }
 
+//https://stackoverflow.com/questions/4654636/how-to-determine-if-a-string-is-a-number-with-c
+bool isNumber (const std::string &str)
+{
+    auto it = str.begin();
+    if (*it == '-') { it++; } //Detects if number is negative
+    while (it != str.end() && std::isdigit(*it)) ++it;
+    return !str.empty() && it == str.end();
+}
+
+std::string lowerString (const std::string &str) {
+    std::string result(str);
+    for (auto it = result.begin(); it != result.end(); it++) {
+        *it = std::tolower(*it);
+    }
+    return result;
+}
+
+Paciente seleccionarPaciente () {
+    std::list<Paciente> pacientes = FileIO::getInstance()->getTodosPacientes();
+    int sel = 0;
+    std::cout << "Seleccionar Paciente" << std::endl;
+
+    std::string input;
+    bool exit = false;
+    while (!exit) {
+        system("clear");     
+        printPacientes(pacientes, sel);
+
+        std::cin >> input;
+        if (isNumber(input)) {
+            sel += std::stoi(input);
+            if (sel < 0) { sel = 0; }
+            if (sel > pacientes.size()-1) { sel = pacientes.size()-1; }            
+        }
+        else if (lowerString(input) == "quit") {
+            sel = -1;
+            exit = true;
+        }
+        else if (lowerString(input) == "select") {
+            exit = true;
+        }
+        else {
+            sel = 0;
+            pacientes = FileIO::getInstance()->buscarPacientes(input);
+        }
+
+        
+    }
+
+    if (sel == -1) {
+        Paciente p;
+        p.setDNI("NULL");
+        return p;
+    }
+
+    auto it = pacientes.begin();
+    for (int i = 0; i < sel; i++) { it++; };
+    return *it;
+}
+
 void printPacientes (std::list<Paciente> pacientes, int sel) {
     
     int longest = 0;
@@ -101,13 +163,17 @@ void printPacientes (std::list<Paciente> pacientes, int sel) {
         }
     }
 
-    colorPrint("Nombre", Color::FG_CYAN, true);
-    for (int i = 0; i < longest - 4; i++) {
+    colorPrint("Nombre  ", Color::FG_CYAN, true);
+    for (int i = 0; i < longest - 6; i++) {
         std::cout << " ";
     }
     colorPrint("Telefono\n", Color::FG_CYAN, true);
     
-    for (int i = 0; i < longest+13; i++) {
+    int dashes = 0;
+    if (longest == 0) { dashes = longest + 16; }
+    else              { dashes = longest + 11; }
+
+    for (int i = 0; i < dashes; i++) {
         colorPrint("-", Color::FG_CYAN, true);
     }
     std::cout << std::endl;
@@ -195,5 +261,30 @@ void printCitas (std::list<Cita> citas) {
         }
 
         std::cout << " " << c.getHora() << " | " << c.getDuracion() << " minutos" << std::endl; 
+    }
+}
+
+void printPaciente (const Paciente &p) {
+    colorPrint("DNI: ", Color::FG_WHITE, true);
+    std::cout << p.getDNI() << std::endl;
+
+    colorPrint("Nombre: ", Color::FG_WHITE, true);
+    std::cout << p.getNombreCompleto() << std::endl;
+
+    colorPrint("Telefono: ", Color::FG_WHITE, true);
+    std::cout << p.getTelefono() << std::endl;
+
+    colorPrint("Direccion: ", Color::FG_WHITE, true);
+    std::cout << p.getDireccion() << std::endl;
+
+    colorPrint("Fecha Nacimiento: ", Color::FG_WHITE, true);
+    std::cout << p.getFechaNacimiento() << std::endl;
+
+    colorPrint("Procedencia: ", Color::FG_WHITE, true);
+    if (p.getProcedencia() == Procedencia::Privado) {
+        std::cout << "Privado" << std::endl;
+    }
+    else if (p.getProcedencia() == Procedencia::Seguro) {
+        std::cout << "Seguro" << std::endl;
     }
 }

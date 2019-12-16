@@ -236,8 +236,6 @@ std::list<Paciente> FileIO::getTodosPacientes () {
             p.setHistorial(getHistorialPaciente(p.getDNI()));
 
             pacientes.push_back(p);
-
-            file.get();
         }
 
         file.close();
@@ -269,7 +267,8 @@ std::list<Paciente> FileIO::buscarPacientes (std::string nombre) {
             getline(file, aux);
             p.setNombreCompleto(aux);
             
-            if (aux == nombre) {
+            //Checks if aux contains name
+            if (aux.find(nombre) != std::string::npos) {
 
                 getline(file, aux);
                 p.setTelefono(std::stoi(aux));
