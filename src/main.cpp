@@ -17,19 +17,14 @@
 #define MOSTRAR_CITAS_HOY 3
 #define LISTA_PACIENTES 4
 
-#define Busqueda_por_nombre 5
-#define Anadirle_nueva_cita 6
-#define Anadirle_nuevo_tratamiento 7
-#define Anadirle_nueva_entrada_a_historial 8
-#define Mostrar_toda_la_informacion_del_paciente_seleccionado 9
-#define Modicar_paciente 10
-#define Modificarle_el_tratamiento 11
-#define Borrar_paciente_seleccionado 12
-#define Mover_una_cita_del_paciente 13
-#define Cancelarle_una_cita 14
-#define Consultar_citas_del_paciente 15
-#define Consultar_historial_medico_del_paciente 16
-#define Consultar_tratamientos_del_paciente 17
+#define ANADIR_CITA 1
+#define ANADIR_TRATAMIENTO 2
+#define ANADIR_HISTORIAL 3
+#define CITAS 4
+#define HISTORIAL 5
+#define TRATAMIENTOS 6
+#define MODIFICAR_PACIENTE 7
+#define BORRAR_PACIENTE 8
 
 void menuPaciente(Paciente p){
     int op=0;
@@ -37,104 +32,81 @@ void menuPaciente(Paciente p){
         std::cout << "MENU Paciente:" << std::endl;
         printPaciente(p);
 
-        std::cout << "00. Salir al menu principal\n"<<std::endl;
-        std::cout << "06. Anadir nueva cita"<<std::endl;
-        std::cout << "07. Anadir nuevo tratamiento"<<std::endl;
-        std::cout << "08. Anadir nueva entrada al historial"<<std::endl;
-        std::cout << "10. Modicar datos del paciente"<<std::endl;
-        std::cout << "11. Modificarle el tratamiento"<<std::endl;
-        std::cout << "12. Borrar paciente seleccionado"<<std::endl;
-        std::cout << "13. Mover una cita del paciente"<<std::endl;
-        std::cout << "14. Cancelarle una cita"<<std::endl;
-        std::cout << "15. Consultar citas del paciente"<<std::endl;
-        std::cout << "16. Consultar historial medico del paciente"<<std::endl;
-        std::cout << "17. Consultar tratamientos del paciente"<<std::endl;
-        std::cin>>op;
+        std::cout << "0. Salir al menu principal"                 << std::endl;
+        std::cout << "1. Anadir nueva cita"                       << std::endl;
+        std::cout << "2. Anadir nuevo tratamiento"                << std::endl;
+        std::cout << "3. Anadir nueva entrada al historial"       << std::endl;
+        std::cout << "4. Consultar citas del paciente"            << std::endl;
+        std::cout << "5. Consultar historial medico del paciente" << std::endl;
+        std::cout << "6. Consultar tratamientos del paciente"     << std::endl;
+        std::cout << "7. Modificar datos del paciente"            << std::endl;
+        std::cout << "8. Borrar paciente seleccionado"            << std::endl;
+        
+        //std::cout << "05. Modificar tratamiento"<<std::endl;
+        //std::cout << "06. Mover una cita del paciente"<<std::endl;
+        //std::cout << "07. Cancelarle una cita"<<std::endl;
+        
+        std::cin >> op;
         
         switch(op){
 
-            case Anadirle_nueva_cita:{
+            case ANADIR_CITA:{
                 system("clear");
                 std::cout << "Has elejido Anadirle nueva cita."<<std::endl;
 
             }break;
 
-            case Anadirle_nuevo_tratamiento:{
+            case ANADIR_TRATAMIENTO:{
                 system("clear");
                 cout << "Has elejido Anadirle nuevo tratamiento."<<std::endl;
 
             }break;
 
-            case Anadirle_nueva_entrada_a_historial:{
+            case ANADIR_HISTORIAL:{
                 system("clear");
                 std::cout << "Has elejido Anadirle nueva entrada a historial."<<std::endl;
 
             }break;
 
-            case Modicar_paciente:{
-                system("clear");
-                std::cout << "Has elejido Modificar paciente."<<std::endl;
-
-            }break;
-
-            case Modificarle_el_tratamiento:{
-                system("clear");
-                std::cout << "Has elejido Modificarle el tratamiento."<<std::endl;
-
-            }break;
-
-            case Borrar_paciente_seleccionado:{
-                system("clear");
-                std::cout << "Has elejido Borrar paciente seleccionado."<<std::endl;
-
-            }break;
-
-            case Mover_una_cita_del_paciente:{
-                system("clear");
-                std::cout << "Has elejido Mover una cita del paciente."<<std::endl;
-
-            }break;
-
-            case Cancelarle_una_cita:{
-                system("clear");
-                std::cout << "Has elejido Cancelarle una cita."<<std::endl;
-
-            }break;
-
-            case Consultar_citas_del_paciente:{
+            case CITAS:{
                 system("clear");
                 std::cout << "Has elejido Consultar citas del paciente."<<std::endl;
 
             }break;
 
-            case Consultar_historial_medico_del_paciente:{
+            case HISTORIAL:{
                 system("clear");
                 std::cout << "Has elejido Consultar historial medico del paciente."<<std::endl;
 
             }break;
 
-            case Consultar_tratamientos_del_paciente:{
+            case TRATAMIENTOS:{
                 system("clear");
                 std::cout << "Has elejido Consultar tratamientos del paciente."<<std::endl;
 
             }break;
+            
+            case MODIFICAR_PACIENTE:{
+                system("clear");
+            }break;
 
+            case BORRAR_PACIENTE:{
+                system("clear");
+                std::cout << "Has elejido Borrar paciente seleccionado."<<std::endl;
+
+            }break;
 
             case EXIT:{
                 system("clear");
-                std::cout << "Has elejido Salir al menu principal."<<std::endl;
-
             }break;
 
 
             default:{
-
                 system("clear");
-                std::cout << "Su opero no existe"<<std::endl;
-
+                colorPrint("ERROR: Opcion no valida", Color::FG_RED, true);
             }break;
 
-    }
+        }
 
     }while(op!=EXIT);
 
