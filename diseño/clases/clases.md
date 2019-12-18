@@ -7,18 +7,20 @@
 
  * nombreCompleto string; Nombre y Apellidos del paciente
  * telefono int; Teléfono de contacto del paciente
- * codigoPostal int; Código postal de la zona de residencia del paciente
+ * direccion string; Direccion del paciente
  * fechaNacimiento string; Fecha de nacimiento del paciente
  * procedencia Procedencia; Tipo de procedencia del paciente
  * historial list<History>; Historial del paciente
- * tratamiento Treatment; Tratamiento activo del paciente
+ * tratamiento list<Tratmiento>; Tratamientos activos del paciente
  * cita list<Cita>; Citas concertadas del paciente
  * DNI string; DNI del paciente
 
 **Métodos:**
 
  * addCita - Añade una cita al paciente
- * endTratamiento - Finaliza el tratamiento actual del paciente, dejando el campo a null
+ * addTratmiento - Añade un nuevo tratamiento al paciente
+ * addHistorial - Añade una nueva entrada al historial del paciente
+ * endTratamiento - Finaliza un tratamiento del paciente
  * getters y setters
 
 
@@ -28,15 +30,17 @@
 **Datos:**
 
  * path string; Ruta donde buscará y guardará los archivos
+ * instance FileIO; Instancia de la clase (Para el patrón Singleton)
 
 **Métodos:**
 
+ * getInstance - Devuelve la única instancia existente de la clase
  * exists - Comprueba si existe un paciente específico
- * getPatient - Busca en el archivo a un paciente específico
- * getAllPatients - Devuelve una lista con todos los pacientes
- * getAllAppointments - Devuelve una lista con todas las citas de los pacientes
- * getTodayAppointments - Devuelve una lista con las citas para el día actual
- * savePatientData - Guarda los datos de un paciente
+ * buscarPaciente - Devuelve una lista con todos los pacientes cuyo nombre incluyan la string de búsqueda pasada como parámetro
+ * getTodosPacientes - Devuelve una lista con todos los pacientes
+ * getTodasCitas - Devuelve una lista con todas las citas de los pacientes
+ * getCitasHoy - Devuelve una lista con las citas para el día actual
+ * guardarPaciente - Guarda los datos de un paciente
  * getters y setters
 
 
