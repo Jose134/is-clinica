@@ -1,4 +1,4 @@
-![Diagrama de Clases](ClassDiagram.jpg)
+![Diagrama de Clases](ClassDiagram_updated.jpg)
 
 ## Paciente
 **Clase:** Paciente
