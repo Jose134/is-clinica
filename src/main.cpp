@@ -29,18 +29,20 @@
 void menuPaciente(Paciente p){
     int op=0;
     do{
-        std::cout << "MENU Paciente:" << std::endl;
+        system("clear");
         printPaciente(p);
 
-        std::cout << "0. Salir al menu principal"                 << std::endl;
-        std::cout << "1. Anadir nueva cita"                       << std::endl;
-        std::cout << "2. Anadir nuevo tratamiento"                << std::endl;
-        std::cout << "3. Anadir nueva entrada al historial"       << std::endl;
-        std::cout << "4. Consultar citas del paciente"            << std::endl;
-        std::cout << "5. Consultar historial medico del paciente" << std::endl;
-        std::cout << "6. Consultar tratamientos del paciente"     << std::endl;
-        std::cout << "7. Modificar datos del paciente"            << std::endl;
-        std::cout << "8. Borrar paciente seleccionado"            << std::endl;
+        colorPrint("\nElija una opcion:\n", Color::FG_CYAN, true);
+        colorPrint("-------------------------------------------\n", Color::FG_CYAN, true);
+        std::cout << "0. Salir al menu principal"                  << std::endl;
+        std::cout << "1. Anadir nueva cita"                        << std::endl;
+        std::cout << "2. Anadir nuevo tratamiento"                 << std::endl;
+        std::cout << "3. Anadir nueva entrada al historial"        << std::endl;
+        std::cout << "4. Consultar citas del paciente"             << std::endl;
+        std::cout << "5. Consultar historial medico del paciente"  << std::endl;
+        std::cout << "6. Consultar tratamientos del paciente"      << std::endl;
+        std::cout << "7. Modificar datos del paciente"             << std::endl;
+        std::cout << "8. Borrar paciente seleccionado"             << std::endl;
         
         //std::cout << "05. Modificar tratamiento"<<std::endl;
         //std::cout << "06. Mover una cita del paciente"<<std::endl;
@@ -54,11 +56,19 @@ void menuPaciente(Paciente p){
                 system("clear");
                 std::cout << "Has elejido Anadirle nueva cita."<<std::endl;
 
+                //Waits for user input
+                std::cin.ignore();
+                std::cin.get();
+
             }break;
 
             case ANADIR_TRATAMIENTO:{
                 system("clear");
                 cout << "Has elejido Anadirle nuevo tratamiento."<<std::endl;
+
+                //Waits for user input
+                std::cin.ignore();
+                std::cin.get();
 
             }break;
 
@@ -66,24 +76,37 @@ void menuPaciente(Paciente p){
                 system("clear");
                 std::cout << "Has elejido Anadirle nueva entrada a historial."<<std::endl;
 
+                //Waits for user input
+                std::cin.ignore();
+                std::cin.get();
+
             }break;
 
             case CITAS:{
                 system("clear");
                 printCitas(p.getCitas());
+                
+                //Waits for user input
+                std::cin.ignore();
                 std::cin.get();
             }break;
 
             case HISTORIAL:{
                 system("clear");
                 printHistorial(p.getHistorial());
+                
+                //Waits for user input
+                std::cin.ignore();
                 std::cin.get();
             }break;
 
             case TRATAMIENTOS:{
                 system("clear");
-                std::cout << "Has elejido Consultar tratamientos del paciente." << std::endl;
+                printTratamientos(p.getTratamientos());
 
+                //Waits for user input
+                std::cin.ignore();
+                std::cin.get();
             }break;
             
             case MODIFICAR_PACIENTE:{
@@ -94,6 +117,9 @@ void menuPaciente(Paciente p){
                 system("clear");
                 std::cout << "Has elejido Borrar paciente seleccionado."<<std::endl;
 
+                //Waits for user input
+                std::cin.ignore();
+                std::cin.get();
             }break;
 
             case EXIT:{
@@ -104,6 +130,10 @@ void menuPaciente(Paciente p){
             default:{
                 system("clear");
                 colorPrint("ERROR: Opcion no valida\n", Color::FG_RED, true);
+
+                //Waits for user input
+                std::cin.ignore();
+                std::cin.get();
             }break;
 
         }
@@ -117,10 +147,10 @@ void menu(){
     int op=0;
     do{
         system("clear");
-        std::cout << "MENU CLINICA:"                     << std::endl;
+        std::cout << "MENU CLINICA" << std::endl;
  
-        std::cout << "Elija una opcion:"                 << std::endl;
-        std::cout << "---------------------------------" << std::endl;
+        colorPrint("\nElija una opcion:\n", Color::FG_CYAN, true);
+        colorPrint("---------------------------------\n", Color::FG_CYAN, true);
         std::cout << "0. Salir del programa"             << std::endl;
         std::cout << "1. Anadir nuevo paciente"          << std::endl;
         std::cout << "2. Mostrar citas"                  << std::endl;
@@ -190,6 +220,10 @@ void menu(){
             default:{
                 system("clear");
                 colorPrint("ERROR: Opcion no valida\n", Color::FG_RED, true);
+
+                //Waits for user input
+                std::cin.ignore();
+                std::cin.get();
             }break;
 
         }

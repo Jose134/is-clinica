@@ -2,6 +2,8 @@
 #define HELPERS_H
 
 #include "Cita.h"
+#include "Tratamiento.h"
+#include "EntradaHistorial.h"
 #include "paciente.h"
 
 #include <list>
@@ -41,7 +43,8 @@ Paciente seleccionarPaciente();
 bool compFechas(const std::string &f1, const std::string &f2);
 void printPacientes(std::list<Paciente> pacientes, int sel=-1);
 void printCitas(std::list<Cita> citas, int sel=-1);
-void printHistorial (std::list<EntradaHistorial> historial);
+void printHistorial(std::list<EntradaHistorial> historial);
+void printTratamientos(std::list<Tratamiento> tratamientos);
 void printPaciente(const Paciente &p);
 
 #endif

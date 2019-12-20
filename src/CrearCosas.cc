@@ -1,6 +1,8 @@
 //     |-----------------------------------------------------|
 //     |   AÑADIR STD:: a las strings, cout, cin y endl!!!   |
 //     |-----------------------------------------------------|
+//
+// Mete estas funciones en helpers.cpp y helpers.h cuando las acabes pls <3
 
 void crearCita(){
 
@@ -16,6 +18,7 @@ void crearCita(){
     cout<<"Por ultimo introduce a que hora va a ser la cita: (Ejemplo HH:MM)"<<endl;
     cin>>aux3;
     //revisar si  a esa hora y ese dia esta libre
+    //Para esto hay una funcion en helpers llamada solapanCitas, haz un bucle con todas las citas que haya y la cita que estas creando
     if(//esta libre){
         _fecha=aux1;
         _duracion=aux2;
@@ -33,6 +36,7 @@ void crearEntradaHistotial(){
     cout<<"Bienvenido a la creación de un historial medico:"<<endl;
     cout<<"----------------------------------"<<endl;
     cout<<"Por favor introduzce la fecha cuando vino el paciente: (ejemplo:DD/MM/YYYY)"<endl;
+    //CREAR STRUCT AUXILIAR Y METER LOS DATOS EN EL AUXILIAR, NO PUEDES METER LOS DATOS SIN CREAR UNA INSTANCIA ANTES
     cin>>EntradaHistorial.fecha;
     cout<<"Por ultimo introduce que sintomas tenia el pacientes:"<<endl;
     cin>>EntradaHistorial.sintomas;
@@ -40,6 +44,8 @@ void crearEntradaHistotial(){
 }
 
 void crearTratamiento(){
+
+    //Usar string auxiliar ya que la funcion no pertenece a la clase
 
     system("clear");
     cout<<"Bienvenido a la creación de un tratamiento:"<<endl;

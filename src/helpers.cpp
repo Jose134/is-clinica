@@ -12,6 +12,9 @@
 #include <list>
 
 #include "paciente.h"
+#include "Cita.h"
+#include "Tratamiento.h"
+#include "EntradaHistorial.h"
 #include "FileIO.h"
 
 //Sets the USE_COLORS variable
@@ -366,7 +369,7 @@ void printCitas (std::list<Cita> citas, int sel) {
 void printHistorial (std::list<EntradaHistorial> historial) {
     std::cout << "----------------------------------" << std::endl;
     for (EntradaHistorial &e : historial) {
-        colorPrint("Fecha: ", Color::FG_WHITE, true);
+        colorPrint("Fecha:    ", Color::FG_WHITE, true);
         colorPrint(e.fecha, Color::FG_WHITE, false);
 
         std::cout << std::endl;
@@ -378,23 +381,53 @@ void printHistorial (std::list<EntradaHistorial> historial) {
     }
 }
 
+void printTratamientos (std::list<Tratamiento> tratamientos) {
+    std::cout << "----------------------------------" << std::endl;
+    for (Tratamiento &t : tratamientos) {
+        colorPrint("Medicamento: ", Color::FG_WHITE, true);
+        colorPrint(t.getMedicamento(), Color::FG_WHITE, false);
+
+        std::cout << std::endl;
+
+        colorPrint("Dosis:       ", Color::FG_WHITE, true);
+        colorPrint(std::to_string(t.getDosis()), Color::FG_WHITE, false);
+
+        std::cout << std::endl;
+
+        colorPrint("Frecuencia:  ", Color::FG_WHITE, true);
+        colorPrint(std::to_string(t.getFrecuencia()), Color::FG_WHITE, false);
+
+        std::cout << std::endl;
+
+        colorPrint("Comienzo:    ", Color::FG_WHITE, true);
+        colorPrint(t.getComienzo(), Color::FG_WHITE, false);
+
+        std::cout << std::endl;
+
+        colorPrint("Fin:         ", Color::FG_WHITE, true);
+        colorPrint(t.getFin(), Color::FG_WHITE, false);
+
+        std::cout << std::endl << "----------------------------------" << std::endl;
+    }
+}
+
 void printPaciente (const Paciente &p) {
-    colorPrint("DNI: ", Color::FG_WHITE, true);
+    colorPrint("DNI:              ", Color::FG_WHITE, true);
     std::cout << p.getDNI() << std::endl;
 
-    colorPrint("Nombre: ", Color::FG_WHITE, true);
+    colorPrint("Nombre:           ", Color::FG_WHITE, true);
     std::cout << p.getNombreCompleto() << std::endl;
 
-    colorPrint("Telefono: ", Color::FG_WHITE, true);
+    colorPrint("Telefono:         ", Color::FG_WHITE, true);
     std::cout << p.getTelefono() << std::endl;
 
-    colorPrint("Direccion: ", Color::FG_WHITE, true);
+    colorPrint("Direccion:        ", Color::FG_WHITE, true);
     std::cout << p.getDireccion() << std::endl;
 
     colorPrint("Fecha Nacimiento: ", Color::FG_WHITE, true);
     std::cout << p.getFechaNacimiento() << std::endl;
 
-    colorPrint("Procedencia: ", Color::FG_WHITE, true);
+    colorPrint("Procedencia:      ", Color::FG_WHITE, true);
     if (p.getProcedencia() == Procedencia::Privado) {
         std::cout << "Privado" << std::endl;
     }
