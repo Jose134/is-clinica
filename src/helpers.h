@@ -29,6 +29,8 @@ static bool USE_COLORS = true;
 
 void setColors(bool use);
 void colorPrint(const std::string &str, int color, bool bold);
+bool fechaValida (const std::string &str);
+bool horaValida (const std::string &str);
 int strGetHora(const std::string &str);
 int strGetMinutos(const std::string &str);
 bool solapanCitas(const Cita &c1, const Cita &c2);

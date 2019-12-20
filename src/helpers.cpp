@@ -54,7 +54,7 @@ bool fechaValida (const std::string &str) {
             case  1: return d <= 31;
             case  2: return d <= 28;
             case  3: return d <= 31;
-            case  4: return d <= 30; 
+            case  4: return d <= 30;
             case  5: return d <= 31;
             case  6: return d <= 30;
             case  7: return d <= 31;
@@ -96,7 +96,7 @@ bool horaValida (const std::string &str) {
         }
 
         //Comprueba que los minutos sean validos
-        int m = strGetHora(str);
+        int m = strGetMinutos(str);
         if (m < 0 || m > 59) {
             return false;
         }
