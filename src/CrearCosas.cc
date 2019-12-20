@@ -7,7 +7,7 @@
 //Eso hecho falta meter revisar si existe cita lo hago o ya esta hecho?
 
 
-void crearCita(){
+Citas crearCita(){
 
   system("clear");
   std::string aux1;//Fecha
@@ -23,10 +23,12 @@ void crearCita(){
   std::cin>>aux3;
   //revisar si  a esa hora y ese dia esta libre
   if(//esta libre){
-      setFecha(aux1);
-      setDuracion(aux2);
-      setHora(aux3);
+      Citas c;
+      c.setFecha(aux1);
+      c.setDuracion(aux2);
+      c.setHora(aux3);
       std::cout<<"Se ha introducido correctamente la cita."<<std::endl;
+    return c;
   }
   else(//No libre){
       std::cout<<"Error, esa hora a ese dia ya hay una cita, disculpa las molestias pero no se ha podido reservar la cita."<<std::endl;
@@ -45,25 +47,26 @@ void crearEntradaHistotial(){//Aqui faltaria pasarle el struct Entrada historia 
 
 }
 
-void crearTratamiento(){
+Tratamiento crearTratamiento(){
 
   system("clear");
+  Tratamiento t;
   std::string auxstring;
   int auxint;
   std::cout<<"Bienvenido a la creación de un tratamiento:"<<std::endl;
   std::cout<<"----------------------------------"<<std::endl;
   std::cout<<"Por favor introduzce el medicamento que necesita el paciente:"<std::endl;
   std::cin>>auxstring;
-  setMedicamento(auxstring);
+  t.setMedicamento(auxstring);
   std::cout<<"Ahora por favor, introduzce por pantalla la dosis que debe tomar el paciente: "<<std::endl;
   std::cin>>auxint;
-  setDosis(auxint);
+  t.setDosis(auxint);
   std::cout<<"Ahora por favor, introduzce por pantalla la frecuencia que debe tomar el medicamento el paciente: "<<std::endl;
   std::cin>>auxint;
-  setFrecuencia(auxint);
+  t.setFrecuencia(auxint);
   std::cout<<"Acontinuacion, introduce el comienzo de cuando debe tomar el medicamento:"<<std::endl;
   std::cin>>auxstring;
-  setFin(auxstring);
+  t.setFin(auxstring);
   std::cout<<"Por ultimo el fin de cuando debe tomar el medicamento:"<<std::endl;
-
+  return t;
 }
