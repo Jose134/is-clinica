@@ -7,32 +7,33 @@
 //Eso hecho falta meter revisar si existe cita lo hago o ya esta hecho?
 
 
-Citas crearCita(){
+Cita crearCita(){
 
-  system("clear");
-  std::string aux1;//Fecha
-  int aux2;//Duracion
-  std::string aux3;//Hora
-  std::cout<<"Bienvenido a la creación de citas:"<<std::endl;
-  std::cout<<"----------------------------------"<<std::endl;
-  std::cout<<"Por favor introduzce la fecha de la cita: (ejemplo:DD/MM/YYYY)"<std::endl;
-  std::cin>>aux1;
-  std::cout<<"Ahora por favor, introduce cuando va a durar la cita en minutos:"<<std::endl;
-  std::cin>>aux2;
-  std::cout<<"Por ultimo introduce a que hora va a ser la cita: (Ejemplo HH:MM)"<<std::endl;
-  std::cin>>aux3;
-  //revisar si  a esa hora y ese dia esta libre
-  if(//esta libre){
-      Citas c;
-      c.setFecha(aux1);
-      c.setDuracion(aux2);
-      c.setHora(aux3);
-      std::cout<<"Se ha introducido correctamente la cita."<<std::endl;
-    return c;
-  }
-  else(//No libre){
-      std::cout<<"Error, esa hora a ese dia ya hay una cita, disculpa las molestias pero no se ha podido reservar la cita."<<std::endl;
-  }
+    system("clear");
+    std::string aux1;//Fecha
+    int aux2;//Duracion
+    std::string aux3;//Hora
+    std::cout<<"Bienvenido a la creación de citas:"<<std::endl;
+    std::cout<<"----------------------------------"<<std::endl;
+    std::cout<<"Por favor introduzce la fecha de la cita: (ejemplo:DD/MM/YYYY)"<std::endl;
+    std::cin>>aux1;
+    std::cout<<"Ahora por favor, introduce cuando va a durar la cita en minutos:"<<std::endl;
+    std::cin>>aux2;
+    std::cout<<"Por ultimo introduce a que hora va a ser la cita: (Ejemplo HH:MM)"<<std::endl;
+    std::cin>>aux3;
+    //revisar si  a esa hora y ese dia esta libre
+    if(//esta libre){
+        Cita c;
+        c.setFecha(aux1);
+        c.setDuracion(aux2);
+        c.setHora(aux3);
+        std::cout<<"Se ha introducido correctamente la cita."<<std::endl;
+
+        return c;
+    }
+    else(//No libre){
+        std::cout<<"Error, esa hora a ese dia ya hay una cita, disculpa las molestias pero no se ha podido reservar la cita."<<std::endl;
+    }
 }
 
 void crearEntradaHistotial(){//Aqui faltaria pasarle el struct Entrada historia no?

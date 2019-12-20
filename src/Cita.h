@@ -1,9 +1,11 @@
-#ifndef CITAS_H
-#define CITAS_H
+#ifndef CITA_H
+#define CITA_H
+
 #include <string>
+
 using namespace std;
 
-class Cita{
+class Cita {
 
 	private:
 		string _fecha; //DD/MM/YYYY

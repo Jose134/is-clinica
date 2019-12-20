@@ -17,6 +17,116 @@
 #include "EntradaHistorial.h"
 #include "FileIO.h"
 
+bool crearCita(Cita &c) {
+    Cita cAux;
+    std::string aux;
+
+    //Fecha
+    std::cout << "Introduzca la fecha de la cita (DD/MM/YYYY):" << std::endl;
+    std::cin >> aux;
+
+    if (!fechaValida(aux)) {
+        colorPrint("ERROR: Fecha no valida\n", Color::FG_RED, true);
+        return false;
+    }
+    cAux.setFecha(aux);
+
+    //Duracion
+    std::cout << "Introduzca la duracion de la cita (en minutos):" << std::endl;
+    int d;
+    std::cin >> d;
+
+    if (d <= 0) {
+        colorPrint("ERROR: Duracion no valida\n", Color::FG_RED, true);
+        return false;
+    }
+    cAux.setDuracion(d);
+
+    //Hora
+    std::cout << "Introduzca la hora de la cita (HH:MM):" << std::endl;
+    std::cin >> aux;
+
+    if (!horaValida(aux)) {
+        colorPrint("ERROR: Hora no valida\n", Color::FG_RED, true);
+    }
+    cAux.setHora(aux);
+
+    //Comprueba si la cita solapa con otra
+    std::list<Cita> citas = FileIO::getInstance()->getTodasCitas();
+    for (Cita &cita : citas) {
+        if (solapanCitas(cAux, cita)) {
+            colorPrint("ERROR: La cita solapa con otra\n", Color::FG_RED, true);
+            return false;
+        }
+    }
+    
+    c = cAux;
+    return true;
+}
+
+bool crearTratamiento(Tratamiento &t) {
+    Tratamiento tAux;
+    std::string aux;
+
+    //Medicamento
+    std::cout << "Introduzca el medicamento:" << std::endl;
+    std::cin >> aux;
+    tAux.setMedicamento(aux);
+
+    //Dosis
+    std::cout << "Introduzca la dosis (en mg): "<<std::endl;
+    int dosis;
+    std::cin >> dosis;
+    tAux.setDosis(dosis);
+
+    //Frecuencia
+    std::cout << "Introduzca la frecuencia con la que el paciente debe tomar el medicamento: " << std::endl;
+    int frecuencia;
+    std::cin >> frecuencia;
+    tAux.setFrecuencia(frecuencia);
+
+    //Fecha comienzo
+    std::cout<<"Introduzca el comienzo del tratamiento:"<<std::endl;
+    std::cin >> aux;
+
+    if (!fechaValida(aux)) {
+        colorPrint("ERROR: Fecha no valida", Color::FG_RED, true);
+        return false;
+    }
+    tAux.setComienzo(aux);
+
+    //Fecha fin
+    std::cout<<"Introduzca el fin del tratamiento:"<<std::endl;
+    std::cin >> aux;
+
+    if (!fechaValida(aux)) {
+        colorPrint("ERROR: Fecha no valida", Color::FG_RED, true);
+        return false;
+    }
+    tAux.setFin(aux);
+
+    t = tAux;
+    return true;
+}
+
+bool crearEntradaHistorial(EntradaHistorial &e) {
+    EntradaHistorial aux;
+
+    std::cout << "Introduzca la fecha (DD/MM/YYYY):" << std::endl;
+    std::cin >> aux.fecha;
+
+    if (!fechaValida(aux.fecha)) {
+        colorPrint("ERROR: Fecha no valida\n", Color::FG_RED, true);
+        return false;
+    }
+
+    std::cout << "Introduzca los sintomas:" << std::endl;
+    std::cin >> aux.sintomas;
+
+    e = aux;
+    return true;
+}
+
 //Sets the USE_COLORS variable
 void setColors (bool use) {
     USE_COLORS = use;

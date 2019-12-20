@@ -29,6 +29,10 @@ enum Color {
 
 static bool USE_COLORS = true;
 
+bool crearCita(Cita &c);
+bool crearTratamiento(Tratamiento &t);
+bool crearEntradaHistorial(EntradaHistorial &e);
+
 void setColors(bool use);
 void colorPrint(const std::string &str, int color, bool bold);
 bool fechaValida (const std::string &str);
