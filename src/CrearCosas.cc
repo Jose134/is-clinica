@@ -10,8 +10,9 @@
 void crearCita(){
 
   system("clear");
-  std::string aux1, aux3;
-  int aux2;
+  std::string aux1;//Fecha
+  int aux2;//Duracion
+  std::string aux3;//Hora
   std::cout<<"Bienvenido a la creación de citas:"<<std::endl;
   std::cout<<"----------------------------------"<<std::endl;
   std::cout<<"Por favor introduzce la fecha de la cita: (ejemplo:DD/MM/YYYY)"<std::endl;
@@ -22,9 +23,9 @@ void crearCita(){
   std::cin>>aux3;
   //revisar si  a esa hora y ese dia esta libre
   if(//esta libre){
-      _fecha=aux1;
-      _duracion=aux2;
-      _hora=aux3;
+      setFecha(aux1);
+      setDuracion(aux2);
+      setHora(aux3);
       std::cout<<"Se ha introducido correctamente la cita."<<std::endl;
   }
   else(//No libre){
@@ -32,7 +33,7 @@ void crearCita(){
   }
 }
 
-void crearEntradaHistotial(){
+void crearEntradaHistotial(){//Aqui faltaria pasarle el struct Entrada historia no?
 
   system("clear");
   std::cout<<"Bienvenido a la creación de un historial medico:"<<std::endl;
@@ -47,16 +48,22 @@ void crearEntradaHistotial(){
 void crearTratamiento(){
 
   system("clear");
+  std::string auxstring;
+  int auxint;
   std::cout<<"Bienvenido a la creación de un tratamiento:"<<std::endl;
   std::cout<<"----------------------------------"<<std::endl;
   std::cout<<"Por favor introduzce el medicamento que necesita el paciente:"<std::endl;
-  std::cin>>_medicamento;
+  std::cin>>auxstring;
+  setMedicamento(auxstring);
   std::cout<<"Ahora por favor, introduzce por pantalla la dosis que debe tomar el paciente: "<<std::endl;
-  std::cin>>_dosis;
+  std::cin>>auxint;
+  setDosis(auxint);
   std::cout<<"Ahora por favor, introduzce por pantalla la frecuencia que debe tomar el medicamento el paciente: "<<std::endl;
-  std::cin>>_frecuencia;
+  std::cin>>auxint;
+  setFrecuencia(auxint);
   std::cout<<"Acontinuacion, introduce el comienzo de cuando debe tomar el medicamento:"<<std::endl;
-  std::cin>>_comienzo;
+  std::cin>>auxstring;
+  setFin(auxstring);
   std::cout<<"Por ultimo el fin de cuando debe tomar el medicamento:"<<std::endl;
 
 }
