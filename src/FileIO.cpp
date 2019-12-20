@@ -58,9 +58,6 @@ std::list<Cita> FileIO::getCitasHoy () {
                       std::to_string(now->tm_mon  + 1) + "/" +
                       std::to_string(now->tm_year + 1900);
 
-    std::cout << hoy << std::endl;
-
-
     std::list<Cita> todas = FileIO::getInstance()->getTodasCitas();
     for (Cita &c : todas) {
         if (c.getFecha() == hoy) {
@@ -142,7 +139,7 @@ std::list<Tratamiento> FileIO::getTratamientosPaciente (std::string dni) {
 std::list<EntradaHistorial> FileIO::getHistorialPaciente (std::string dni) {
     std::list<EntradaHistorial> historial;
 
-    std::ifstream file(dni + "_citas.txt");
+    std::ifstream file(dni + "_historial.txt");
     if (file) {
         while (!file.eof()) {
             //Checks if file is empty
@@ -153,8 +150,8 @@ std::list<EntradaHistorial> FileIO::getHistorialPaciente (std::string dni) {
             EntradaHistorial e;
             std::string aux;
 
-            file >> e.fecha;
-            file >> e.sintomas;
+            getline(file, e.fecha);
+            getline(file, e.sintomas);
 
             historial.push_back(e);
         }

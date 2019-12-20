@@ -40,7 +40,8 @@ Paciente seleccionarPaciente();
 
 bool compFechas(const std::string &f1, const std::string &f2);
 void printPacientes(std::list<Paciente> pacientes, int sel=-1);
-void printCitas(std::list<Cita> citas);
+void printCitas(std::list<Cita> citas, int sel=-1);
+void printHistorial (std::list<EntradaHistorial> historial);
 void printPaciente(const Paciente &p);
 
 #endif

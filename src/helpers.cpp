@@ -1,3 +1,9 @@
+/* helpers.cpp
+ *
+ * Contiene la implementacion de funciones auxiliares que no pertenecen a ninguna clase 
+ * 
+ */
+
 #include "helpers.h"
 #include <string>
 #include <iostream>
@@ -331,11 +337,12 @@ bool compCitas (const Cita &c1, const Cita &c2) {
     }
 }
 
-void printCitas (std::list<Cita> citas) {
+void printCitas (std::list<Cita> citas, int sel) {
     std::list<Cita> sortedList = citas;
     sortedList.sort(compCitas);
 
     std::string currentDate = "";
+    int count = 0;
     for (Cita &c : sortedList) {
         if (c.getFecha() != currentDate) {
             std::cout << std::endl;
@@ -345,7 +352,29 @@ void printCitas (std::list<Cita> citas) {
             currentDate = c.getFecha();
         }
 
-        std::cout << " " << c.getHora() << " | " << c.getDuracion() << " minutos" << std::endl; 
+        if (count == sel) {
+            std::string text = c.getHora() + " | " + std::to_string(c.getDuracion()) + " minutos\n";
+            colorPrint(text, Color::BG_CYAN, true);
+        }
+        else {
+            std::cout << " " << c.getHora() << " | " << c.getDuracion() << " minutos" << std::endl; 
+        }
+        count++;
+    }
+}
+
+void printHistorial (std::list<EntradaHistorial> historial) {
+    std::cout << "----------------------------------" << std::endl;
+    for (EntradaHistorial &e : historial) {
+        colorPrint("Fecha: ", Color::FG_WHITE, true);
+        colorPrint(e.fecha, Color::FG_WHITE, false);
+
+        std::cout << std::endl;
+
+        colorPrint("Sintomas: ", Color::FG_WHITE, true);
+        colorPrint(e.sintomas, Color::FG_WHITE, false);
+
+        std::cout << std::endl << "----------------------------------" << std::endl;
     }
 }
 

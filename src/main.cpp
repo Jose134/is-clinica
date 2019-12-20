@@ -71,17 +71,18 @@ void menuPaciente(Paciente p){
             case CITAS:{
                 system("clear");
                 printCitas(p.getCitas());
+                std::cin.get();
             }break;
 
             case HISTORIAL:{
                 system("clear");
-                std::cout << "Has elejido Consultar historial medico del paciente."<<std::endl;
-
+                printHistorial(p.getHistorial());
+                std::cin.get();
             }break;
 
             case TRATAMIENTOS:{
                 system("clear");
-                std::cout << "Has elejido Consultar tratamientos del paciente."<<std::endl;
+                std::cout << "Has elejido Consultar tratamientos del paciente." << std::endl;
 
             }break;
             
@@ -102,7 +103,7 @@ void menuPaciente(Paciente p){
 
             default:{
                 system("clear");
-                colorPrint("ERROR: Opcion no valida", Color::FG_RED, true);
+                colorPrint("ERROR: Opcion no valida\n", Color::FG_RED, true);
             }break;
 
         }
@@ -115,6 +116,7 @@ void menu(){
 
     int op=0;
     do{
+        system("clear");
         std::cout << "MENU CLINICA:"                     << std::endl;
  
         std::cout << "Elija una opcion:"                 << std::endl;
@@ -133,52 +135,55 @@ void menu(){
                 system("clear");
                 std::cout << "Has elejido nadir nuevo paciente." << std::endl;
 
+                //Waits for user input
+                std::cin.ignore();
+                std::cin.get();
             }break;
 
             case MOSTRAR_CITAS:{
                 system("clear");
                 printCitas(FileIO::getInstance()->getTodasCitas());
+
+                //Waits for user input
+                std::cin.ignore();
+                std::cin.get();
             }break;
 
             case MOSTRAR_CITAS_HOY:{
                 system("clear");
                 printCitas(FileIO::getInstance()->getCitasHoy());
 
+                //Waits for user input
+                std::cin.ignore();
+                std::cin.get();
             }break;
 
             case LISTA_PACIENTES:{
                 system("clear");
-                /*
-                std::list<Paciente> pacientes = FileIO::getInstance()->getTodosPacientes();
-                int index = seleccionarPaciente(pacientes);
-                auto p = pacientes.begin();
-                for (int i = 0; i < index; i++) { p++; }
-
-                menuPaciente(*p);
-                */
-
                 Paciente p = seleccionarPaciente();
                 if (p.getDNI() != "NULL") {
                     menuPaciente(p);
                 }
             }break;
 
+            /*
             case 5: {
                 std::cout << "Introduzca el nombre: " << std::endl;
                 std::string nombre;
                 std::cin >> nombre;
+
                 std::list<Paciente> busqueda = FileIO::getInstance()->buscarPacientes(nombre);
                 int index = seleccionarPaciente(busqueda);
+                
                 auto p = busqueda.begin();
                 for (int i = 0; i < index; i++) { p++; }
 
                 menuPaciente(*p);
             }
+            */
 
             case EXIT:{
                 system("clear");
-                std::cout << "Has elejido Salir del programa." << std::endl;
-
             }break;
 
 
