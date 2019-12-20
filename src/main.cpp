@@ -70,8 +70,7 @@ void menuPaciente(Paciente p){
 
             case CITAS:{
                 system("clear");
-                std::cout << "Has elejido Consultar citas del paciente."<<std::endl;
-
+                printCitas(p.getCitas());
             }break;
 
             case HISTORIAL:{

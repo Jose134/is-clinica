@@ -23,6 +23,91 @@ void colorPrint (const std::string &str, int color, bool bold) {
     }
 }
 
+//Comprueba que la fecha este en el formato DD/MM/YYYY y sea valida
+bool fechaValida (const std::string &str) {
+    if (str.size() == 10) {
+        //Comprueba el formato
+        for (int i = 0; i < 10; i++) {
+            if (i == 2 || i == 5) {
+                if (str[i] != '/') {
+                    return false;
+                }
+            }
+            else {
+                if (!std::isdigit(str[i])) {
+                    return false;
+                }
+            }
+        }
+
+        //Comprueba el mes
+        int m = std::stoi(str.substr(3, 2));
+        if (m < 1 || m > 12) {
+            return false;
+        }
+
+        //Comprueba el dia en funcion del mes
+        int d = std::stoi(str.substr(0, 2));
+        if (d < 1) { return false; }
+
+        switch (m) {
+            case  1: return d <= 31;
+            case  2: return d <= 28;
+            case  3: return d <= 31;
+            case  4: return d <= 30; 
+            case  5: return d <= 31;
+            case  6: return d <= 30;
+            case  7: return d <= 31;
+            case  8: return d <= 31;
+            case  9: return d <= 30;
+            case 10: return d <= 31;
+            case 11: return d <= 30;
+            case 12: return d <= 31;
+        }
+    }
+    else {
+        return false;
+    }
+
+    return true;
+}
+
+//Comprueba que la hora este en el formato HH:MM y sea valida
+bool horaValida (const std::string &str) {
+    if (str.size() == 5) {
+        //Comprueba el formato
+        for (int i = 0; i < 5; i++) {
+            if (i == 2) {
+                if (str[i] != ':') {
+                    return false;
+                }
+            }
+            else {
+                if (!std::isdigit(str[i])) {
+                    return false;
+                }
+            }
+        }
+
+        //Comprueba que la hora sea valida
+        int h = strGetHora(str);
+        if (h < 0 || h > 23) {
+            return false;
+        }
+
+        //Comprueba que los minutos sean validos
+        int m = strGetHora(str);
+        if (m < 0 || m > 59) {
+            return false;
+        }
+    }
+    else {
+        return false;        
+    }
+
+    return true;
+}
+
 //Extrae la hora de una string con formato HH:MM
 int strGetHora (const std::string &str) {
     std::string hora = str.substr(0, 2);

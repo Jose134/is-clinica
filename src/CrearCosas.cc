@@ -1,4 +1,8 @@
-void Cita::crearCita(){
+//     |-----------------------------------------------------|
+//     |   AÑADIR STD:: a las strings, cout, cin y endl!!!   |
+//     |-----------------------------------------------------|
+
+void crearCita(){
 
     system("clear");
     string aux1, aux3;
@@ -13,17 +17,17 @@ void Cita::crearCita(){
     cin>>aux3;
     //revisar si  a esa hora y ese dia esta libre
     if(//esta libre){
-      _fecha=aux1;
-      _duracion=aux2;
-      _hora=aux3;
-      cout<<"Se ha introducido correctamente la cita."<<endl;
+        _fecha=aux1;
+        _duracion=aux2;
+        _hora=aux3;
+        cout<<"Se ha introducido correctamente la cita."<<endl;
     }
     else(//No libre){
-      cout<<"Error, esa hora a ese dia ya hay una cita, disculpa las molestias pero no se ha podido reservar la cita."<<endl;
+        cout<<"Error, esa hora a ese dia ya hay una cita, disculpa las molestias pero no se ha podido reservar la cita."<<endl;
     }
-  }
+}
 
-  void CrearEntradaHistotial(){
+void crearEntradaHistotial(){
 
     system("clear");
     cout<<"Bienvenido a la creación de un historial medico:"<<endl;
@@ -33,9 +37,9 @@ void Cita::crearCita(){
     cout<<"Por ultimo introduce que sintomas tenia el pacientes:"<<endl;
     cin>>EntradaHistorial.sintomas;
 
-  }
+}
 
-  void Tratamiento::CrearTratamiento(){
+void crearTratamiento(){
 
     system("clear");
     cout<<"Bienvenido a la creación de un tratamiento:"<<endl;
@@ -49,4 +53,5 @@ void Cita::crearCita(){
     cout<<"Acontinuacion, introduce el comienzo de cuando debe tomar el medicamento:"<<endl;
     cin>>_comienzo;
     cout<<"Por ultimo el fin de cuando debe tomar el medicamento:"<<endl;
-  }
+
+}
