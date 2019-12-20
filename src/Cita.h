@@ -13,7 +13,6 @@ class Cita {
 		string _hora;  //Hora:Minuto HH:MM
 
 	public:
-
 		Cita () {
 			_fecha = "";
 			_duracion = -1;

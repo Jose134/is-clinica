@@ -77,12 +77,23 @@ bool crearTratamiento(Tratamiento &t) {
     std::cout << "Introduzca la dosis (en mg): "<<std::endl;
     int dosis;
     std::cin >> dosis;
+
+    if (dosis <= 0) {
+        colorPrint("ERROR: Dosis no valida\n", Color::FG_RED, true);
+        return false;
+    }
+
     tAux.setDosis(dosis);
 
     //Frecuencia
     std::cout << "Introduzca la frecuencia con la que el paciente debe tomar el medicamento: " << std::endl;
     int frecuencia;
     std::cin >> frecuencia;
+
+    if (frecuencia <= 0) {
+        colorPrint("ERROR: Frecuencia no valida\n", Color::FG_RED, true);
+        return false;        
+    }
     tAux.setFrecuencia(frecuencia);
 
     //Fecha comienzo
@@ -90,7 +101,7 @@ bool crearTratamiento(Tratamiento &t) {
     std::cin >> aux;
 
     if (!fechaValida(aux)) {
-        colorPrint("ERROR: Fecha no valida", Color::FG_RED, true);
+        colorPrint("ERROR: Fecha no valida\n", Color::FG_RED, true);
         return false;
     }
     tAux.setComienzo(aux);
@@ -100,7 +111,7 @@ bool crearTratamiento(Tratamiento &t) {
     std::cin >> aux;
 
     if (!fechaValida(aux)) {
-        colorPrint("ERROR: Fecha no valida", Color::FG_RED, true);
+        colorPrint("ERROR: Fecha no valida\n", Color::FG_RED, true);
         return false;
     }
     tAux.setFin(aux);

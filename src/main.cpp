@@ -54,7 +54,12 @@ void menuPaciente(Paciente p){
 
             case ANADIR_CITA:{
                 system("clear");
-                std::cout << "Has elejido Anadirle nueva cita."<<std::endl;
+                Cita c;
+                if(crearCita(c)) {
+                    p.addCita(c);
+                    FileIO::getInstance()->guardarPaciente(p);
+                    std::cout << "La cita se añadio correctamente" << std::endl;
+                }
 
                 //Waits for user input
                 std::cin.ignore();
@@ -64,7 +69,12 @@ void menuPaciente(Paciente p){
 
             case ANADIR_TRATAMIENTO:{
                 system("clear");
-                cout << "Has elejido Anadirle nuevo tratamiento."<<std::endl;
+                Tratamiento t;
+                if(crearTratamiento(t)) {
+                    p.addTratamiento(t);
+                    FileIO::getInstance()->guardarPaciente(p);
+                    std::cout << "El tratamiento se añadio correctamente" << std::endl;
+                }
 
                 //Waits for user input
                 std::cin.ignore();
@@ -74,7 +84,12 @@ void menuPaciente(Paciente p){
 
             case ANADIR_HISTORIAL:{
                 system("clear");
-                std::cout << "Has elejido Anadirle nueva entrada a historial."<<std::endl;
+                EntradaHistorial e;
+                if(crearEntradaHistorial(e)) {
+                    p.addHistorial(e);
+                    FileIO::getInstance()->guardarPaciente(p);
+                    std::cout << "La entrada se añadio correctamente al historial" << std::endl;
+                }
 
                 //Waits for user input
                 std::cin.ignore();
