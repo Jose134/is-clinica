@@ -248,6 +248,10 @@ Paciente seleccionarPaciente () {
 }
 
 void printPacientes (std::list<Paciente> pacientes, int sel) {
+    if (pacientes.size() == 0) {
+        std::cout << "----------------------------------" << std::endl;
+        colorPrint("No hay ningun paciente\n", Color::FG_WHITE, true);
+    }
     
     int longest = 0;
     for (Paciente &p : pacientes) {
@@ -341,6 +345,11 @@ bool compCitas (const Cita &c1, const Cita &c2) {
 }
 
 void printCitas (std::list<Cita> citas, int sel) {
+    if (citas.size() == 0) {
+        std::cout << "----------------------------------" << std::endl;
+        colorPrint("No hay ninguna cita\n", Color::FG_WHITE, true);
+    }
+
     std::list<Cita> sortedList = citas;
     sortedList.sort(compCitas);
 
@@ -368,6 +377,10 @@ void printCitas (std::list<Cita> citas, int sel) {
 
 void printHistorial (std::list<EntradaHistorial> historial) {
     std::cout << "----------------------------------" << std::endl;
+    if (historial.size() == 0) {
+        colorPrint("No hay ninguna entrada\n", Color::FG_WHITE, true);
+    }
+
     for (EntradaHistorial &e : historial) {
         colorPrint("Fecha:    ", Color::FG_WHITE, true);
         colorPrint(e.fecha, Color::FG_WHITE, false);
@@ -383,6 +396,10 @@ void printHistorial (std::list<EntradaHistorial> historial) {
 
 void printTratamientos (std::list<Tratamiento> tratamientos) {
     std::cout << "----------------------------------" << std::endl;
+    if (tratamientos.size() == 0) {
+        colorPrint("No hay ningun tratamiento\n", Color::FG_WHITE, true);
+    }
+
     for (Tratamiento &t : tratamientos) {
         colorPrint("Medicamento: ", Color::FG_WHITE, true);
         colorPrint(t.getMedicamento(), Color::FG_WHITE, false);
