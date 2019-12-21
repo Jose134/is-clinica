@@ -3,6 +3,7 @@
 
 #include <string>
 #include <list>
+#include <fstream>
 #include "paciente.h"
 
 class FileIO {
@@ -12,6 +13,10 @@ class FileIO {
         
         FileIO (std::string path) {
             _path = path;
+            std::ifstream ifs(_path);
+            if (!ifs) {
+                std::ofstream ofs(_path);
+            }
         }
 
         std::list<Cita> getCitasPaciente (std::string dni);
@@ -33,6 +38,7 @@ class FileIO {
         std::list<Paciente> buscarPacientes(std::string name); //Busca todos los pacientes cuyo nombre coincida con el dado
         std::list<Cita> getTodasCitas(); //Devuelve todas las citas
         std::list<Cita> getCitasHoy(); //Devuelve las citas para el día de hoy
+        void borrarPaciente(const Paciente &p);
         void guardarPaciente(const Paciente &p); //Guarda los datos de un paciente
 
 };

@@ -23,7 +23,8 @@ bool crearPaciente(Paciente &p) {
 
     //DNI
     std::cout << "Introduzca el DNI:" << std::endl;
-    std::cin >> aux;
+    std::cin.ignore();
+    getline(std::cin, aux);
 
     if (aux.size() != 9) {
         colorPrint("ERROR: DNI no valido\n", Color::FG_RED, true);
@@ -43,11 +44,19 @@ bool crearPaciente(Paciente &p) {
         colorPrint("ERROR: DNI no valido\n", Color::FG_RED, true);
         return false;
     }
+
+    std::list<Paciente> pacientes = FileIO::getInstance()->getTodosPacientes();
+    for (Paciente &paciente : pacientes) {
+        if (aux == paciente.getDNI()) {
+            colorPrint("WARNING: Ya existe un paciente con este DNI, el paciente sera sustituido\n", Color::FG_YELLOW, true);
+            break;
+        }
+    }
     pAux.setDNI(aux);
 
     //Nombre
     std::cout << "Introduzca el nombre completo:" << std::endl;
-    std::cin >> aux;
+    getline(std::cin, aux);
     pAux.setNombreCompleto(aux);
 
     //Telefono
@@ -66,12 +75,13 @@ bool crearPaciente(Paciente &p) {
 
     //Direccion
     std::cout << "Introduzca la direccion:" << std::endl;
-    std::cin >> aux;
+    std::cin.ignore();
+    getline(std::cin, aux);
     pAux.setDireccion(aux);
 
     //Fecha Nacimiento
     std::cout << "Introduzca la fecha de nacimiento (DD/MM/YYYY):" << std::endl;
-    std::cin >> aux;
+    getline(std::cin, aux);
 
     if (!fechaValida(aux)) {
         colorPrint("ERROR: Fecha no valida\n", Color::FG_RED, true);
@@ -81,7 +91,7 @@ bool crearPaciente(Paciente &p) {
 
     //Procedencia
     std::cout << "Introduzca la procedencia (Seguro/Privado):" << std::endl;
-    std::cin >> aux;
+    getline(std::cin, aux);
     
     if (lowerString(aux) == "seguro") {
         pAux.setProcedencia(Procedencia::Seguro);
@@ -91,9 +101,11 @@ bool crearPaciente(Paciente &p) {
     }
     else {
         colorPrint("ERROR: Procedencia no valida\n", Color::FG_RED, true);
+        return false;
     }
 
     p = pAux;
+    return true;
 }
 
 bool crearCita(Cita &c) {
@@ -330,6 +342,53 @@ int strGetMinutos (const std::string &str) {
 }
 
 bool solapanCitas (const Cita &c1, const Cita &c2) {
+    bool solapan = true;
+
+    if (c1.getFecha() == c2.getFecha()) {
+        int hc1 = strGetHora(c1.getHora());
+        int mc1 = strGetMinutos(c1.getHora());
+
+        int hf1 = hc1;
+        int mf1 = mc1 + c1.getDuracion();
+        hf1 += mf1 / 60;
+        mf1 %= 60;
+
+        int hc2 = strGetHora(c2.getHora());
+        int mc2 = strGetMinutos(c2.getHora());
+
+        int hf2 = hc2;
+        int mf2 = mc2 + c2.getDuracion();
+        hf2 += mf2 / 60;
+        mf2 %= 60;
+
+        if (hf1 < hc2) {
+            solapan = false;
+        }
+        else if (hf1 == hc2) {
+            if (mf1 <= mc2) {
+                solapan = false;
+            }
+        }
+
+        if (hc1 > hf2) {
+            solapan = false;
+        }
+        else if (hc1 == hf2) {
+            if (mc1 >= mf2) {
+                solapan = false;
+            }
+        }
+    }
+    else {
+        solapan = false;
+    }
+
+    return solapan;
+}
+
+/* Esta creo que no funciona correctamente :C
+
+bool solapanCitas (const Cita &c1, const Cita &c2) {
     if (c1.getFecha() == c2.getFecha()) {
         if (c1.getHora() == c2.getHora()) {
             return true;
@@ -361,6 +420,7 @@ bool solapanCitas (const Cita &c1, const Cita &c2) {
         return false;
     }
 }
+*/
 
 int seleccionarPaciente (std::list<Paciente> pacientes) {
     int sel = 0;

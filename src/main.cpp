@@ -130,7 +130,9 @@ void menuPaciente(Paciente p){
 
             case BORRAR_PACIENTE:{
                 system("clear");
-                std::cout << "Has elejido Borrar paciente seleccionado."<<std::endl;
+                FileIO::getInstance()->borrarPaciente(p);
+                op = EXIT;
+                std::cout << "Paciente borrado correctamente" << std::endl;
 
                 //Waits for user input
                 std::cin.ignore();
@@ -180,7 +182,10 @@ void menu(){
                 system("clear");
                 Paciente p;
                 if (crearPaciente(p)) {
+                    //WARNING: Si el paciente que se ha creado tiene el mismo DNI que uno ya existente se reemplazara el antiguo,
+                    //         por tanto se borraran el historial, citas y tratamientos
                     FileIO::getInstance()->guardarPaciente(p);
+                    std::cout << "Paciente anadido correctamente" << std::endl;
                 }
 
                 //Waits for user input

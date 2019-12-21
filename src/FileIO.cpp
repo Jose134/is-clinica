@@ -299,9 +299,122 @@ std::list<Paciente> FileIO::buscarPacientes (std::string nombre) {
     return pacientes;
 }
 
+void FileIO::borrarPaciente (const Paciente &p) {
+    remove((p.getDNI() + "_citas.txt").c_str());
+    remove((p.getDNI() + "_tratamientos.txt").c_str());
+    remove((p.getDNI() + "_historial.txt").c_str());
+
+    std::list<Paciente> pacientes = getInstance()->getTodosPacientes();
+    std::ofstream file(_path);
+    if (file) {
+        for (Paciente &paciente : pacientes) {
+            if (paciente.getDNI() != p.getDNI()) {
+                file << paciente.getDNI()              << std::endl;
+                file << paciente.getNombreCompleto()   << std::endl;
+                file << paciente.getTelefono()         << std::endl;
+                file << paciente.getDireccion()        << std::endl;
+                file << paciente.getFechaNacimiento()  << std::endl;
+                file << (int)paciente.getProcedencia() << std::endl;
+            }
+        }
+
+        file.close();
+    }
+}
+
 void FileIO::guardarPaciente (const Paciente &p) {
     int result = exists(p.getDNI());
+    if (result >= 0) {
+        std::list<Paciente> pacientes = getInstance()->getTodosPacientes();
+        std::ofstream file(_path);
+        if (file) {
+            for (Paciente &paciente : pacientes) {
+                if (paciente.getDNI() == p.getDNI()) {
+                    paciente = p;
+                }
 
+                file << paciente.getDNI()              << std::endl;
+                file << paciente.getNombreCompleto()   << std::endl;
+                file << paciente.getTelefono()         << std::endl;
+                file << paciente.getDireccion()        << std::endl;
+                file << paciente.getFechaNacimiento()  << std::endl;
+                file << (int)paciente.getProcedencia() << std::endl;
+
+                //Guarda las listas del paciente
+                std::ofstream listFile;
+
+                listFile.open(paciente.getDNI() + "_citas.txt");
+                for (Cita &c : paciente.getCitas()) {
+                    listFile << c.getFecha()    << std::endl;
+                    listFile << c.getDuracion() << std::endl;
+                    listFile << c.getHora()     << std::endl;
+                }
+                listFile.close();
+
+                listFile.open(paciente.getDNI() + "_tratamientos.txt");
+                for (Tratamiento &t : paciente.getTratamientos()) {
+                    listFile << t.getMedicamento() << std::endl;
+                    listFile << t.getDosis()       << std::endl;
+                    listFile << t.getFrecuencia()  << std::endl;
+                    listFile << t.getComienzo()    << std::endl;
+                    listFile << t.getFin()         << std::endl;
+                }
+                listFile.close();
+
+                listFile.open(paciente.getDNI() + "_historial.txt");
+                for (EntradaHistorial &e : paciente.getHistorial()) {
+                    listFile << e.fecha    << std::endl;
+                    listFile << e.sintomas << std::endl;
+                }
+                listFile.close();
+            }
+            file.close();
+        }
+    }
+    else {
+        std::fstream file(_path, fstream::out | fstream::app);
+        if (file) {
+            file << p.getDNI()              << std::endl;
+            file << p.getNombreCompleto()   << std::endl;
+            file << p.getTelefono()         << std::endl;
+            file << p.getDireccion()        << std::endl;
+            file << p.getFechaNacimiento()  << std::endl;
+            file << (int)p.getProcedencia() << std::endl;
+
+            //Guarda las listas del paciente
+            std::ofstream listFile;
+
+            listFile.open(p.getDNI() + "_citas.txt");
+            for (Cita &c : p.getCitas()) {
+                listFile << c.getFecha()    << std::endl;
+                listFile << c.getDuracion() << std::endl;
+                listFile << c.getHora()     << std::endl;
+            }
+            listFile.close();
+
+            listFile.open(p.getDNI() + "_tratamientos.txt");
+            for (Tratamiento &t : p.getTratamientos()) {
+                listFile << t.getMedicamento() << std::endl;
+                listFile << t.getDosis()       << std::endl;
+                listFile << t.getFrecuencia()  << std::endl;
+                listFile << t.getComienzo()    << std::endl;
+                listFile << t.getFin()         << std::endl;
+            }
+            listFile.close();
+
+            listFile.open(p.getDNI() + "_historial.txt");
+            for (EntradaHistorial &e : p.getHistorial()) {
+                listFile << e.fecha    << std::endl;
+                listFile << e.sintomas << std::endl;
+            }
+            listFile.close();
+            
+
+            file.close();
+        }
+    }
+
+    /*
     std::fstream file(_path, fstream::in | fstream::out);
     if (file) {
         if (result >= 0) {
@@ -353,4 +466,5 @@ void FileIO::guardarPaciente (const Paciente &p) {
 
         file.close();
     }
+    */
 }
