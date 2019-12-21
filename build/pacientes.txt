@@ -22,3 +22,9 @@ Jose Antonio
 cordoba
 05/08/2000
 1
+31874480E
+PacienteAnadidoMedianteElPrograma
+603604128
+Direccion
+01/07/2001
+0

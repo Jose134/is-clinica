@@ -17,6 +17,85 @@
 #include "EntradaHistorial.h"
 #include "FileIO.h"
 
+bool crearPaciente(Paciente &p) {
+    Paciente pAux;
+    std::string aux;
+
+    //DNI
+    std::cout << "Introduzca el DNI:" << std::endl;
+    std::cin >> aux;
+
+    if (aux.size() != 9) {
+        colorPrint("ERROR: DNI no valido\n", Color::FG_RED, true);
+        return false;
+    }
+
+    std::string numberStr = aux.substr(0, 8);
+    if (!isNumber(numberStr)) {
+        colorPrint("ERROR: DNI no valido\n", Color::FG_RED, true);
+        return false;
+    }
+
+    aux[8] = toupper(aux[8]);
+    char letras[] = "TRWAGMYFPDXBNJZSQVHLCKE";
+    char letra = letras[std::stoi(numberStr) % 23];
+    if (aux[8] != letra) {
+        colorPrint("ERROR: DNI no valido\n", Color::FG_RED, true);
+        return false;
+    }
+    pAux.setDNI(aux);
+
+    //Nombre
+    std::cout << "Introduzca el nombre completo:" << std::endl;
+    std::cin >> aux;
+    pAux.setNombreCompleto(aux);
+
+    //Telefono
+    std::cout << "Introduzca el telefono:" << std::endl;
+    std::cin >> aux;
+
+    if (aux.size() != 9) {
+        colorPrint("ERROR: Telefono no valido\n", Color::FG_RED, true);
+        return false;
+    }
+    if (!isNumber(aux)) {
+        colorPrint("ERROR: Telefono no valido\n", Color::FG_RED, true);
+        return false;
+    }
+    pAux.setTelefono(std::stoi(aux));
+
+    //Direccion
+    std::cout << "Introduzca la direccion:" << std::endl;
+    std::cin >> aux;
+    pAux.setDireccion(aux);
+
+    //Fecha Nacimiento
+    std::cout << "Introduzca la fecha de nacimiento (DD/MM/YYYY):" << std::endl;
+    std::cin >> aux;
+
+    if (!fechaValida(aux)) {
+        colorPrint("ERROR: Fecha no valida\n", Color::FG_RED, true);
+        return false;
+    }
+    pAux.setFechaNacimiento(aux);
+
+    //Procedencia
+    std::cout << "Introduzca la procedencia (Seguro/Privado):" << std::endl;
+    std::cin >> aux;
+    
+    if (lowerString(aux) == "seguro") {
+        pAux.setProcedencia(Procedencia::Seguro);
+    }
+    else if (lowerString(aux) == "privado") {
+        pAux.setProcedencia(Procedencia::Privado);
+    }
+    else {
+        colorPrint("ERROR: Procedencia no valida\n", Color::FG_RED, true);
+    }
+
+    p = pAux;
+}
+
 bool crearCita(Cita &c) {
     Cita cAux;
     std::string aux;
@@ -372,6 +451,7 @@ void printPacientes (std::list<Paciente> pacientes, int sel) {
     if (pacientes.size() == 0) {
         std::cout << "----------------------------------" << std::endl;
         colorPrint("No hay ningun paciente\n", Color::FG_WHITE, true);
+        return;
     }
     
     int longest = 0;

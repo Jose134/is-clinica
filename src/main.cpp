@@ -178,7 +178,10 @@ void menu(){
 
             case ANADIR_PACIENTE:{
                 system("clear");
-                std::cout << "Has elejido nadir nuevo paciente." << std::endl;
+                Paciente p;
+                if (crearPaciente(p)) {
+                    FileIO::getInstance()->guardarPaciente(p);
+                }
 
                 //Waits for user input
                 std::cin.ignore();
@@ -210,22 +213,6 @@ void menu(){
                     menuPaciente(p);
                 }
             }break;
-
-            /*
-            case 5: {
-                std::cout << "Introduzca el nombre: " << std::endl;
-                std::string nombre;
-                std::cin >> nombre;
-
-                std::list<Paciente> busqueda = FileIO::getInstance()->buscarPacientes(nombre);
-                int index = seleccionarPaciente(busqueda);
-                
-                auto p = busqueda.begin();
-                for (int i = 0; i < index; i++) { p++; }
-
-                menuPaciente(*p);
-            }
-            */
 
             case EXIT:{
                 system("clear");

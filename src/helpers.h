@@ -29,7 +29,7 @@ enum Color {
 
 static bool USE_COLORS = true;
 
-bool crearPaciente(Paciente &p); //CUIDADO CON LAS LISTAS
+bool crearPaciente(Paciente &p);
 bool crearCita(Cita &c);
 bool crearTratamiento(Tratamiento &t);
 bool crearEntradaHistorial(EntradaHistorial &e);
@@ -41,6 +41,8 @@ bool horaValida (const std::string &str);
 int strGetHora(const std::string &str);
 int strGetMinutos(const std::string &str);
 bool solapanCitas(const Cita &c1, const Cita &c2);
+bool isNumber(const std::string &str);
+std::string lowerString(const std::string &str);
 
 int seleccionarPaciente(std::list<Paciente> pacientes);
 Paciente seleccionarPaciente();
