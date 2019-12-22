@@ -126,6 +126,14 @@ void menuPaciente(Paciente p){
             
             case MODIFICAR_PACIENTE:{
                 system("clear");
+                if(crearPaciente(p, true)) {
+                    FileIO::getInstance()->guardarPaciente(p);
+                    std::cout << "Paciente modificado correctamente" << std::endl;
+                }
+
+                //Waits for user input
+                std::cin.ignore();
+                std::cin.get();
             }break;
 
             case BORRAR_PACIENTE:{

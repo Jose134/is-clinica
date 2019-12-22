@@ -29,7 +29,7 @@ enum Color {
 
 static bool USE_COLORS = true;
 
-bool crearPaciente(Paciente &p);
+bool crearPaciente(Paciente &p, bool modificar=false);
 bool crearCita(Cita &c);
 bool crearTratamiento(Tratamiento &t);
 bool crearEntradaHistorial(EntradaHistorial &e);

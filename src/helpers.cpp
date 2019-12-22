@@ -17,42 +17,49 @@
 #include "EntradaHistorial.h"
 #include "FileIO.h"
 
-bool crearPaciente(Paciente &p) {
+bool crearPaciente(Paciente &p, bool modificar) {
     Paciente pAux;
     std::string aux;
+    std::cin.ignore(); //Cleans cin to avoid problems with the getline function
 
     //DNI
-    std::cout << "Introduzca el DNI:" << std::endl;
-    std::cin.ignore();
-    getline(std::cin, aux);
+    if (!modificar) {
+        //Si estamos añadiendo un paciente nuevo pedimos el DNI
+        std::cout << "Introduzca el DNI:" << std::endl;
+        getline(std::cin, aux);
 
-    if (aux.size() != 9) {
-        colorPrint("ERROR: DNI no valido\n", Color::FG_RED, true);
-        return false;
-    }
-
-    std::string numberStr = aux.substr(0, 8);
-    if (!isNumber(numberStr)) {
-        colorPrint("ERROR: DNI no valido\n", Color::FG_RED, true);
-        return false;
-    }
-
-    aux[8] = toupper(aux[8]);
-    char letras[] = "TRWAGMYFPDXBNJZSQVHLCKE";
-    char letra = letras[std::stoi(numberStr) % 23];
-    if (aux[8] != letra) {
-        colorPrint("ERROR: DNI no valido\n", Color::FG_RED, true);
-        return false;
-    }
-
-    std::list<Paciente> pacientes = FileIO::getInstance()->getTodosPacientes();
-    for (Paciente &paciente : pacientes) {
-        if (aux == paciente.getDNI()) {
-            colorPrint("WARNING: Ya existe un paciente con este DNI, el paciente sera sustituido\n", Color::FG_YELLOW, true);
-            break;
+        if (aux.size() != 9) {
+            colorPrint("ERROR: DNI no valido\n", Color::FG_RED, true);
+            return false;
         }
+
+        std::string numberStr = aux.substr(0, 8);
+        if (!isNumber(numberStr)) {
+            colorPrint("ERROR: DNI no valido\n", Color::FG_RED, true);
+            return false;
+        }
+
+        aux[8] = toupper(aux[8]);
+        char letras[] = "TRWAGMYFPDXBNJZSQVHLCKE";
+        char letra = letras[std::stoi(numberStr) % 23];
+        if (aux[8] != letra) {
+            colorPrint("ERROR: DNI no valido\n", Color::FG_RED, true);
+            return false;
+        }
+
+        std::list<Paciente> pacientes = FileIO::getInstance()->getTodosPacientes();
+        for (Paciente &paciente : pacientes) {
+            if (aux == paciente.getDNI()) {
+                colorPrint("WARNING: Ya existe un paciente con este DNI, el paciente sera sustituido\n", Color::FG_YELLOW, true);
+                break;
+            }
+        }
+        pAux.setDNI(aux);
     }
-    pAux.setDNI(aux);
+    else {
+        //Si estamos modificando un paciente copiamos el DNI
+        pAux.setDNI(p.getDNI());
+    }
 
     //Nombre
     std::cout << "Introduzca el nombre completo:" << std::endl;
@@ -385,42 +392,6 @@ bool solapanCitas (const Cita &c1, const Cita &c2) {
 
     return solapan;
 }
-
-/* Esta creo que no funciona correctamente :C
-
-bool solapanCitas (const Cita &c1, const Cita &c2) {
-    if (c1.getFecha() == c2.getFecha()) {
-        if (c1.getHora() == c2.getHora()) {
-            return true;
-        }
-        else {
-            int hora1 = strGetHora(c1.getHora());
-            int minuto1 = strGetMinutos(c1.getHora());
-            minuto1 += c1.getDuracion();
-            hora1 += minuto1 / 60;
-            minuto1 %= 60;
-
-            int hora2 = strGetHora(c2.getHora());
-            int minuto2 = strGetMinutos(c2.getHora());
-
-            if (hora1 > hora2) {
-                return true;
-            }
-            else if (hora1 == hora2) {
-                if (minuto1 > minuto2) {
-                    return true;
-                }
-            }
-            else {
-                return false;
-            }
-        }
-    }
-    else {
-        return false;
-    }
-}
-*/
 
 int seleccionarPaciente (std::list<Paciente> pacientes) {
     int sel = 0;
