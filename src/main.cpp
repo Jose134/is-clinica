@@ -38,15 +38,11 @@ void menuPaciente(Paciente p){
         std::cout << "1. Anadir nueva cita"                        << std::endl;
         std::cout << "2. Anadir nuevo tratamiento"                 << std::endl;
         std::cout << "3. Anadir nueva entrada al historial"        << std::endl;
-        std::cout << "4. Consultar citas del paciente"             << std::endl;
-        std::cout << "5. Consultar historial medico del paciente"  << std::endl;
-        std::cout << "6. Consultar tratamientos del paciente"      << std::endl;
+        std::cout << "4. Citas del paciente"                       << std::endl;
+        std::cout << "5. Historial medico del paciente"            << std::endl;
+        std::cout << "6. Tratamientos del paciente"                << std::endl;
         std::cout << "7. Modificar datos del paciente"             << std::endl;
         std::cout << "8. Borrar paciente seleccionado"             << std::endl;
-        
-        //std::cout << "05. Modificar tratamiento"<<std::endl;
-        //std::cout << "06. Mover una cita del paciente"<<std::endl;
-        //std::cout << "07. Cancelarle una cita"<<std::endl;
         
         std::cin >> op;
         
@@ -99,11 +95,37 @@ void menuPaciente(Paciente p){
 
             case CITAS:{
                 system("clear");
-                printCitas(p.getCitas());
+                std::list<Cita> citas = p.getCitas();
+                Selection s = seleccionarCita(citas);
+                if (s.index != -1) {
+                    auto it = citas.begin();
+                    for (int i = 0; i < s.index; i++) { it++; }
+
+                    if (s.op == "edit") {
+                        system("clear");
+                        if(crearCita(*it)) {
+                            p.setCitas(citas);
+                            FileIO::getInstance()->guardarPaciente(p);
+                            std::cout << "Cita modificada correctamente" << std::endl;
+
+                            //Waits for user input
+                            std::cin.ignore();
+                            std::cin.get();
+                        }
+                    }
+                    else if (s.op == "delete") {
+                        system("clear");
+                        citas.erase(it);
+                        p.setCitas(citas);
+                        FileIO::getInstance()->guardarPaciente(p);
+                        std::cout << "Cita eliminada correctamente" << std::endl;
+
+                        //Waits for user input
+                        std::cin.ignore();
+                        std::cin.get();
+                    }
+                }
                 
-                //Waits for user input
-                std::cin.ignore();
-                std::cin.get();
             }break;
 
             case HISTORIAL:{
@@ -117,11 +139,37 @@ void menuPaciente(Paciente p){
 
             case TRATAMIENTOS:{
                 system("clear");
-                printTratamientos(p.getTratamientos());
+                std::list<Tratamiento> tratamientos = p.getTratamientos();
+                Selection s = seleccionarTratamiento(tratamientos);
+                if (s.index != -1) {
+                    auto it = tratamientos.begin();
+                    for (int i = 0; i < s.index; i++) { it++; }
 
-                //Waits for user input
-                std::cin.ignore();
-                std::cin.get();
+                    if (s.op == "edit") {
+                        system("clear");
+                        if(crearTratamiento(*it)) {
+                            p.setTratamientos(tratamientos);
+                            FileIO::getInstance()->guardarPaciente(p);
+                            std::cout << "Tratamiento modificado correctamente" << std::endl;
+
+                            //Waits for user input
+                            std::cin.ignore();
+                            std::cin.get();
+                        }
+                    }
+                    else if (s.op == "delete") {
+                        system("clear");
+                        tratamientos.erase(it);
+                        p.setTratamientos(tratamientos);
+                        FileIO::getInstance()->guardarPaciente(p);
+                        std::cout << "Tratamiento eliminado correctamente" << std::endl;
+
+                        //Waits for user input
+                        std::cin.ignore();
+                        std::cin.get();
+                    }
+                }
+
             }break;
             
             case MODIFICAR_PACIENTE:{
@@ -147,10 +195,7 @@ void menuPaciente(Paciente p){
                 std::cin.get();
             }break;
 
-            case EXIT:{
-                system("clear");
-            }break;
-
+            case EXIT: break;
 
             default:{
                 system("clear");

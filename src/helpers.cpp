@@ -184,7 +184,7 @@ bool crearTratamiento(Tratamiento &t) {
     tAux.setDosis(dosis);
 
     //Frecuencia
-    std::cout << "Introduzca la frecuencia con la que el paciente debe tomar el medicamento: " << std::endl;
+    std::cout << "Introduzca la frecuencia con la que debe tomar el medicamento (en horas): " << std::endl;
     int frecuencia;
     std::cin >> frecuencia;
 
@@ -393,31 +393,6 @@ bool solapanCitas (const Cita &c1, const Cita &c2) {
     return solapan;
 }
 
-int seleccionarPaciente (std::list<Paciente> pacientes) {
-    int sel = 0;
-    std::cout << "Seleccionar Paciente" << std::endl;
-
-    char input = 0;
-    bool exit = false;
-    while (!exit) {
-        system("clear");     
-        printPacientes(pacientes, sel);
-
-        std::cin >> input;
-        if (input == 'w' || input == 'W') {
-            sel = sel == 0 ? sel : sel-1;
-        }
-        else if (input == 's' || input == 'S') {
-            sel = sel == pacientes.size()-1 ? sel : sel+1;
-        }
-        else if (input == 'e' || input == 'E') {
-            exit = true;
-        }
-    }
-
-    return sel;
-}
-
 //https://stackoverflow.com/questions/4654636/how-to-determine-if-a-string-is-a-number-with-c
 bool isNumber (const std::string &str)
 {
@@ -438,7 +413,6 @@ std::string lowerString (const std::string &str) {
 Paciente seleccionarPaciente () {
     std::list<Paciente> pacientes = FileIO::getInstance()->getTodosPacientes();
     int sel = 0;
-    std::cout << "Seleccionar Paciente" << std::endl;
 
     std::string input;
     bool exit = false;
@@ -446,6 +420,11 @@ Paciente seleccionarPaciente () {
         system("clear");     
         printPacientes(pacientes, sel);
 
+        std::cout << std::endl << "--------------------------------------------------------------------------" << std::endl;
+        std::cout << "Escriba un numero para desplazarse en la lista esa cantidad de posiciones" << std::endl
+                  << "Escriba select para seleccionar el paciente" << std::endl
+                  << "Escriba quit para salir" << std::endl
+                  << "Escriba cualquier otra cosa para buscar por nombre" << std::endl;
         std::cin >> input;
         if (isNumber(input)) {
             sel += std::stoi(input);
@@ -480,7 +459,7 @@ Paciente seleccionarPaciente () {
 
 void printPacientes (std::list<Paciente> pacientes, int sel) {
     if (pacientes.size() == 0) {
-        std::cout << "----------------------------------" << std::endl;
+        colorPrint("----------------------------------\n", Color::FG_CYAN, true);
         colorPrint("No hay ningun paciente\n", Color::FG_WHITE, true);
         return;
     }
@@ -510,7 +489,11 @@ void printPacientes (std::list<Paciente> pacientes, int sel) {
 
     int count = 0;
     for (Paciente &p : pacientes) {
+        bool selected = count == sel;
         std::string line;
+        if (selected) {
+            line += " ";
+        }
         line += p.getNombreCompleto();
 
         int spaces = longest-line.size() + 2;
@@ -576,6 +559,49 @@ bool compCitas (const Cita &c1, const Cita &c2) {
     }
 }
 
+Selection seleccionarCita (std::list<Cita> citas) {
+    int sel = citas.size() == 0 ? -1 : 0;
+    Selection result;
+
+    std::string input;
+    bool exit = false;
+    while (!exit) {
+        system("clear");     
+        printCitas(citas, sel);
+
+        std::cout << std::endl << "--------------------------------------------------------------------------" << std::endl;
+        std::cout << "Escriba un numero para desplazarse en la lista esa cantidad de posiciones" << std::endl
+                  << "Escriba edit para modificar la cita" << std::endl
+                  << "Escriba delete para borrar la cita" << std::endl
+                  << "Escriba quit para salir" << std::endl;
+        std::cin >> input;
+        if (isNumber(input)) {
+            sel += std::stoi(input);
+            if (sel < 0) { sel = 0; }
+            if (sel > citas.size()-1) { sel = citas.size()-1; }            
+        }
+        else if (lowerString(input) == "quit") {
+            sel = -1;
+            exit = true;
+        }
+        else if (lowerString(input) == "edit") {
+            result.op = "edit";
+            exit = true;
+        }
+        else if (lowerString(input) == "delete") {
+            result.op = "delete";
+            exit = true;
+        }
+        /*else {
+            sel = 0;
+            pacientes = FileIO::getInstance()->buscarPacientes(input);
+        }*/
+    }
+
+    result.index = sel;
+    return result;
+}
+
 void printCitas (std::list<Cita> citas, int sel) {
     if (citas.size() == 0) {
         std::cout << "----------------------------------" << std::endl;
@@ -597,7 +623,7 @@ void printCitas (std::list<Cita> citas, int sel) {
         }
 
         if (count == sel) {
-            std::string text = c.getHora() + " | " + std::to_string(c.getDuracion()) + " minutos\n";
+            std::string text = "  " + c.getHora() + " | " + std::to_string(c.getDuracion()) + " minutos\n";
             colorPrint(text, Color::BG_CYAN, true);
         }
         else {
@@ -626,12 +652,56 @@ void printHistorial (std::list<EntradaHistorial> historial) {
     }
 }
 
-void printTratamientos (std::list<Tratamiento> tratamientos) {
-    std::cout << "----------------------------------" << std::endl;
+Selection seleccionarTratamiento (std::list<Tratamiento> tratamientos) {
+    int sel = tratamientos.size() == 0 ? -1 : 0;
+    Selection result;
+
+    std::string input;
+    bool exit = false;
+    while (!exit) {
+        system("clear");     
+        printTratamientos(tratamientos, sel);
+
+        std::cout << std::endl << "--------------------------------------------------------------------------" << std::endl;
+        std::cout << "Escriba un numero para desplazarse en la lista esa cantidad de posiciones" << std::endl
+                  << "Escriba edit para modificar el tratamiento" << std::endl
+                  << "Escriba delete para borrar el tratamiento" << std::endl
+                  << "Escriba quit para salir" << std::endl;
+        std::cin >> input;
+        if (isNumber(input)) {
+            sel += std::stoi(input);
+            if (sel < 0) { sel = 0; }
+            if (sel > tratamientos.size()-1) { sel = tratamientos.size()-1; }            
+        }
+        else if (lowerString(input) == "quit") {
+            sel = -1;
+            exit = true;
+        }
+        else if (lowerString(input) == "edit") {
+            result.op = "edit";
+            exit = true;
+        }
+        else if (lowerString(input) == "delete") {
+            result.op = "delete";
+            exit = true;
+        }
+    }
+
+    result.index = sel;
+    return result;
+}
+
+void printTratamientos (std::list<Tratamiento> tratamientos, int sel) {
+    int count = -1;
+    bool bold = count == (sel - 1);
+    Color c = bold ? Color::FG_CYAN : Color::FG_WHITE;
+
+    colorPrint("----------------------------------\n", c, bold);
     if (tratamientos.size() == 0) {
         colorPrint("No hay ningun tratamiento\n", Color::FG_WHITE, true);
     }
 
+    count = 0;
     for (Tratamiento &t : tratamientos) {
         colorPrint("Medicamento: ", Color::FG_WHITE, true);
         colorPrint(t.getMedicamento(), Color::FG_WHITE, false);
@@ -656,7 +726,10 @@ void printTratamientos (std::list<Tratamiento> tratamientos) {
         colorPrint("Fin:         ", Color::FG_WHITE, true);
         colorPrint(t.getFin(), Color::FG_WHITE, false);
 
-        std::cout << std::endl << "----------------------------------" << std::endl;
+        bold = (count == sel || count == sel-1);
+        c = bold ? Color::FG_CYAN : Color::FG_WHITE;
+        colorPrint("\n----------------------------------\n", c, bold);
+        count++;
     }
 }
 

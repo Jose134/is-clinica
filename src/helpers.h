@@ -7,6 +7,7 @@
 #include "paciente.h"
 
 #include <list>
+#include <string>
 
 enum Color {
     FG_BLACK   = 30,
@@ -27,6 +28,11 @@ enum Color {
     BG_WHITE   = 47
 };
 
+struct Selection {
+    int index;
+    std::string op;
+};
+
 static bool USE_COLORS = true;
 
 bool crearPaciente(Paciente &p, bool modificar=false);
@@ -44,14 +50,15 @@ bool solapanCitas(const Cita &c1, const Cita &c2);
 bool isNumber(const std::string &str);
 std::string lowerString(const std::string &str);
 
-int seleccionarPaciente(std::list<Paciente> pacientes);
 Paciente seleccionarPaciente();
+Selection seleccionarCita(std::list<Cita> citas);
+Selection seleccionarTratamiento(std::list<Tratamiento> tratamientos);
 
 bool compFechas(const std::string &f1, const std::string &f2);
 void printPacientes(std::list<Paciente> pacientes, int sel=-1);
 void printCitas(std::list<Cita> citas, int sel=-1);
 void printHistorial(std::list<EntradaHistorial> historial);
-void printTratamientos(std::list<Tratamiento> tratamientos);
+void printTratamientos(std::list<Tratamiento> tratamientos, int setl=-1);
 void printPaciente(const Paciente &p);
 
 #endif
