@@ -54,7 +54,8 @@ std::list<Cita> FileIO::getCitasHoy () {
     //https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c
     std::time_t t = std::time(0);
     std::tm* now = std::localtime(&t);
-    std::string hoy = std::to_string(now->tm_mday) + "/" +
+    std::string day = now->tm_mday < 10 ? "0" + now->tm_mday : std::to_string(now->tm_mday);
+    std::string hoy = day + "/" +
                       std::to_string(now->tm_mon  + 1) + "/" +
                       std::to_string(now->tm_year + 1900);
 
