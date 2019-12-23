@@ -95,11 +95,6 @@ bool crearPaciente(Paciente &p, bool modificar) {
         colorPrint("ERROR: Fecha no valida\n", Color::FG_RED, true);
         return false;
     }
-    else {
-        if (compFechas(getFechaHoy(), aux)) {
-            
-        }
-    }
     pAux.setFechaNacimiento(aux);
 
     //Procedencia
