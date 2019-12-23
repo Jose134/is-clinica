@@ -26,7 +26,7 @@
 #define MODIFICAR_PACIENTE 7
 #define BORRAR_PACIENTE 8
 
-void menuPaciente(Paciente p){
+void menuPaciente(Paciente &p){
     int op=0;
     do{
         system("clear");
@@ -107,11 +107,10 @@ void menuPaciente(Paciente p){
                             p.setCitas(citas);
                             FileIO::getInstance()->guardarPaciente(p);
                             std::cout << "Cita modificada correctamente" << std::endl;
-
-                            //Waits for user input
-                            std::cin.ignore();
-                            std::cin.get();
                         }
+                        //Waits for user input
+                        std::cin.ignore();
+                        std::cin.get();
                     }
                     else if (s.op == "delete") {
                         system("clear");
@@ -159,11 +158,17 @@ void menuPaciente(Paciente p){
                     }
                     else if (s.op == "delete") {
                         system("clear");
-                        tratamientos.erase(it);
-                        p.setTratamientos(tratamientos);
-                        FileIO::getInstance()->guardarPaciente(p);
-                        std::cout << "Tratamiento eliminado correctamente" << std::endl;
 
+                        if (compFechas(getFechaHoy(), it->getFin())) {
+                            tratamientos.erase(it);
+                            p.setTratamientos(tratamientos);
+                            FileIO::getInstance()->guardarPaciente(p);
+                            std::cout << "Tratamiento eliminado correctamente" << std::endl;
+                        }
+                        else {
+                            colorPrint("ERROR: No se puede eliminar un tratamiento ya finalizado\n", Color::FG_RED, true);
+                        }
+                        
                         //Waits for user input
                         std::cin.ignore();
                         std::cin.get();
@@ -242,7 +247,6 @@ void menu(){
                 }
 
                 //Waits for user input
-                std::cin.ignore();
                 std::cin.get();
             }break;
 

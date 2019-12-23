@@ -1,6 +1,7 @@
 #include "FileIO.h"
 #include "paciente.h"
 #include "Cita.h"
+#include "helpers.h"
 
 #include <string>
 #include <fstream>
@@ -51,13 +52,7 @@ std::list<Cita> FileIO::getTodasCitas () {
 std::list<Cita> FileIO::getCitasHoy () {
     std::list<Cita> citas;
 
-    //https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c
-    std::time_t t = std::time(0);
-    std::tm* now = std::localtime(&t);
-    std::string day = now->tm_mday < 10 ? "0" + now->tm_mday : std::to_string(now->tm_mday);
-    std::string hoy = day + "/" +
-                      std::to_string(now->tm_mon  + 1) + "/" +
-                      std::to_string(now->tm_year + 1900);
+    std::string hoy = getFechaHoy();
 
     std::list<Cita> todas = FileIO::getInstance()->getTodasCitas();
     for (Cita &c : todas) {

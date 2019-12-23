@@ -48,6 +48,13 @@ class Cita {
 		void setHora(string hora) {
 			_hora=hora;
 		}
+
+        bool operator== (const Cita &c) {
+            if (c.getDuracion() == _duracion && c.getHora() == _hora && c.getFecha() == _fecha) {
+                return true;
+            }
+            return false;
+        }
 };
 
 #endif

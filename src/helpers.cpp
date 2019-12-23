@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 #include <cctype>
+#include <ctime>
 
 #include <list>
 
@@ -93,6 +94,11 @@ bool crearPaciente(Paciente &p, bool modificar) {
     if (!fechaValida(aux)) {
         colorPrint("ERROR: Fecha no valida\n", Color::FG_RED, true);
         return false;
+    }
+    else {
+        if (compFechas(getFechaHoy(), aux)) {
+            
+        }
     }
     pAux.setFechaNacimiento(aux);
 
@@ -249,6 +255,18 @@ void colorPrint (const std::string &str, int color, bool bold) {
     else {
         std::cout << str;
     }
+}
+
+std::string getFechaHoy () {
+    //https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c
+    std::time_t t = std::time(0);
+    std::tm* now = std::localtime(&t);
+    std::string day = now->tm_mday < 10 ? "0" + now->tm_mday : std::to_string(now->tm_mday);
+    std::string hoy = day + "/" +
+                      std::to_string(now->tm_mon  + 1) + "/" +
+                      std::to_string(now->tm_year + 1900);
+
+    return hoy;
 }
 
 //Comprueba que la fecha este en el formato DD/MM/YYYY y sea valida
@@ -512,6 +530,35 @@ void printPacientes (std::list<Paciente> pacientes, int sel) {
     }
 }
 
+//True si f1 > f2, false si f1 < f2
+bool compFechas (const std::string &f1, const std::string &f2) {
+    int y1 = std::stoi(f1.substr(6, 4));
+    int y2 = std::stoi(f2.substr(6, 4));
+    
+    if (y1 == y2) {
+        int m1 = std::stoi(f1.substr(3, 2));
+        int m2 = std::stoi(f2.substr(3, 2));
+
+        if (m1 == m2) {
+            int d1 = std::stoi(f1.substr(0, 2));
+            int d2 = std::stoi(f2.substr(0, 2));
+        
+            if (d1 == d2) {
+                return true;
+            }
+            else {
+                return d1 < d2;
+            }
+        }
+        else {
+            return m1 < m2;
+        }
+    }
+    else {
+        return y1 < y2;
+    }
+}
+
 bool compCitas (const Cita &c1, const Cita &c2) {
     //Compara la fecha de ambas citas
     const std::string f1 = c1.getFecha();
@@ -563,6 +610,9 @@ Selection seleccionarCita (std::list<Cita> citas) {
     int sel = citas.size() == 0 ? -1 : 0;
     Selection result;
 
+    std::list<Cita> sortedList = citas;
+    sortedList.sort(compCitas);
+
     std::string input;
     bool exit = false;
     while (!exit) {
@@ -592,10 +642,20 @@ Selection seleccionarCita (std::list<Cita> citas) {
             result.op = "delete";
             exit = true;
         }
-        /*else {
-            sel = 0;
-            pacientes = FileIO::getInstance()->buscarPacientes(input);
-        }*/
+    }
+
+    auto it = sortedList.begin();
+    for (int i = 0; i < sel; i++) {
+        it++;
+    }
+
+    int count = 0;
+    for (Cita &c : citas) {
+        if (c == *it) {
+            sel = count;
+            break;
+        }
+        count++;
     }
 
     result.index = sel;
