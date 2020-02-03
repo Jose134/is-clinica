@@ -720,7 +720,7 @@ Selection seleccionarTratamiento (std::list<Tratamiento> tratamientos) {
         std::cout << std::endl << "--------------------------------------------------------------------------" << std::endl;
         std::cout << "Escriba un numero para desplazarse en la lista esa cantidad de posiciones" << std::endl
                   << "Escriba edit para modificar el tratamiento" << std::endl
-                  << "Escriba delete para borrar el tratamiento" << std::endl
+                  << "Escriba cancel para cancelar el tratamiento" << std::endl
                   << "Escriba quit para salir" << std::endl;
         std::cin >> input;
         if (isNumber(input)) {
@@ -736,7 +736,7 @@ Selection seleccionarTratamiento (std::list<Tratamiento> tratamientos) {
             result.op = "edit";
             exit = true;
         }
-        else if (lowerString(input) == "delete") {
+        else if (lowerString(input) == "cancel") {
             result.op = "delete";
             exit = true;
         }

@@ -163,10 +163,10 @@ void menuPaciente(Paciente &p){
                             tratamientos.erase(it);
                             p.setTratamientos(tratamientos);
                             FileIO::getInstance()->guardarPaciente(p);
-                            std::cout << "Tratamiento eliminado correctamente" << std::endl;
+                            std::cout << "Tratamiento cancelado correctamente" << std::endl;
                         }
                         else {
-                            colorPrint("ERROR: No se puede eliminar un tratamiento ya finalizado\n", Color::FG_RED, true);
+                            colorPrint("ERROR: No se puede cancelar un tratamiento ya finalizado\n", Color::FG_RED, true);
                         }
                         
                         //Waits for user input
